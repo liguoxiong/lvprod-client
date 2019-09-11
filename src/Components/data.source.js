@@ -122,7 +122,7 @@ export const Banner10DataSource = {
         title: {
           className: "banner1-title",
           children:
-            ""
+            "Máy may"
         },
         content: {
           className: "banner1-content",
@@ -138,7 +138,7 @@ export const Banner10DataSource = {
         title: {
           className: "banner1-title",
           children:
-            ""
+            "Băng tải"
         },
         content: {
           className: "banner1-content",
@@ -282,7 +282,7 @@ export const Content50DataSource = {
           wrapper: { className: "content5-block-content" },
           img: {
             children:
-              "https://t.alipayobjects.com/images/rmsweb/T11aVgXc4eXXXXXXXX.svg"
+              "https://sc01.alicdn.com/kf/HTB1IleZRXXXXXa_apXXq6xXFXXXa/Sports-shoes-leather-sewing-machine.jpg_350x350.jpg"
           },
           content: { children: "Máy may giày da" }
         }
@@ -296,7 +296,7 @@ export const Content50DataSource = {
           wrapper: { className: "content5-block-content" },
           img: {
             children:
-              "https://zos.alipayobjects.com/rmsportal/faKjZtrmIbwJvVR.svg"
+              "https://sc01.alicdn.com/kf/HTB1IleZRXXXXXa_apXXq6xXFXXXa/Sports-shoes-leather-sewing-machine.jpg_350x350.jpg"
           },
           content: { children: "Băng tải" }
         }
@@ -310,7 +310,7 @@ export const Content50DataSource = {
           wrapper: { className: "content5-block-content" },
           img: {
             children:
-              "https://t.alipayobjects.com/images/rmsweb/T11aVgXc4eXXXXXXXX.svg"
+              "https://sc02.alicdn.com/kf/HTB1xro7ryOYBuNjSsD4q6zSkFXaD/JK810-Industrial-Sewing-Machine-For-Shoes-Used.jpg_350x350.jpg"
           },
           content: { children: "Băng tải" }
         }
@@ -324,7 +324,7 @@ export const Content50DataSource = {
           wrapper: { className: "content5-block-content" },
           img: {
             children:
-              "https://zos.alipayobjects.com/rmsportal/faKjZtrmIbwJvVR.svg"
+              "http://maymayhiepthanh.com/upload/product/cs-335bh.jpg"
           },
           content: { children: "Máy may" }
         }
@@ -338,7 +338,7 @@ export const Content50DataSource = {
           wrapper: { className: "content5-block-content" },
           img: {
             children:
-              "https://t.alipayobjects.com/images/rmsweb/T11aVgXc4eXXXXXXXX.svg"
+              "http://vinatechnic.vn/uploads/shops/2014_10/bang-tai-chuyen-thung-carton.jpg"
           },
           content: { children: "máy may" }
         }
@@ -352,7 +352,7 @@ export const Content50DataSource = {
           wrapper: { className: "content5-block-content" },
           img: {
             children:
-              "https://zos.alipayobjects.com/rmsportal/faKjZtrmIbwJvVR.svg"
+              "https://www.bangtaihang.com/library/module_new/he-thong-bang-tai-trong-cong-nghiep_s1530.jpg"
           },
           content: { children: "Băng tải" }
         }
@@ -366,7 +366,7 @@ export const Content50DataSource = {
           wrapper: { className: "content5-block-content" },
           img: {
             children:
-              "https://t.alipayobjects.com/images/rmsweb/T11aVgXc4eXXXXXXXX.svg"
+              "http://bangtaicongnghiep.vn/uploads/Images/bang-tai-xich-1.jpg"
           },
           content: { children: "Băng tải" }
         }
@@ -380,7 +380,7 @@ export const Content50DataSource = {
           wrapper: { className: "content5-block-content" },
           img: {
             children:
-              "https://zos.alipayobjects.com/rmsportal/faKjZtrmIbwJvVR.svg"
+              "http://bangtaicongnghiep.vn/uploads/Images/bang-tai-xich-1.jpg"
           },
           content: { children: "Máy may" }
         }
