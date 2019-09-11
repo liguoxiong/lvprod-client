@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/lvprod-client/static/css/main.0e5e16a6.chunk.css",
+    "main.js": "/lvprod-client/static/js/main.20389757.chunk.js",
+    "main.js.map": "/lvprod-client/static/js/main.20389757.chunk.js.map",
+    "runtime~main.js": "/lvprod-client/static/js/runtime~main.85a80587.js",
+    "runtime~main.js.map": "/lvprod-client/static/js/runtime~main.85a80587.js.map",
+    "static/css/2.ef94d21c.chunk.css": "/lvprod-client/static/css/2.ef94d21c.chunk.css",
+    "static/js/2.a1d3e1df.chunk.js": "/lvprod-client/static/js/2.a1d3e1df.chunk.js",
+    "static/js/2.a1d3e1df.chunk.js.map": "/lvprod-client/static/js/2.a1d3e1df.chunk.js.map",
+    "index.html": "/lvprod-client/index.html",
+    "precache-manifest.3be934ef59f4010b98c1990118de1b9d.js": "/lvprod-client/precache-manifest.3be934ef59f4010b98c1990118de1b9d.js",
+    "service-worker.js": "/lvprod-client/service-worker.js",
+    "static/css/2.ef94d21c.chunk.css.map": "/lvprod-client/static/css/2.ef94d21c.chunk.css.map",
+    "static/css/main.0e5e16a6.chunk.css.map": "/lvprod-client/static/css/main.0e5e16a6.chunk.css.map"
+  }
+}
