@@ -1,12 +1,8 @@
 import React from "react";
-import Gui from "./Components/index";
+import AppRouter from "./router";
 
 function App() {
-  return (
-    <div>
-      <Gui />
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;
