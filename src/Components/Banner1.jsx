@@ -13,40 +13,38 @@ class Banner extends React.PureComponent {
     const { dataSource } = props;
     delete props.dataSource;
     delete props.isMobile;
-    const childrenToRender = dataSource.BannerAnim.children.map((item, i) => {
-      const elem = item.BannerElement;
-      const elemClassName = elem.className;
-      delete elem.className;
-      const { bg, textWrapper, title, content, button } = item;
+    const childrenToRender = dataSource.BannerAnim.map((item, i) => {
+      const { title, content, button } = item;
       return (
-        <Element key={i.toString()} {...elem} prefixCls={elemClassName}>
-          <BgElement key="bg" {...bg} />
+        <Element key={i.toString()} className="banner-user-elem" prefixCls="banner-user-elem">
+          <BgElement key="bg" style={{backgroundImage: `url(${item.image})`, backgroundPosition: "center"}} className="bg" />
           <QueueAnim
             type={['bottom', 'top']}
             delay={200}
             key="text"
-            {...textWrapper}
+            className="banner1-text-wrapper"
           >
-            <div key="logo" {...title}>
-              {typeof title.children === 'string' &&
-              title.children.match(isImg) ? (
-                <img src={title.children} width="100%" alt="img" />
+            <div key="logo" className="banner1-title">
+              {typeof title === 'string' &&
+              title.match(isImg) ? (
+                <img src={title} width="100%" alt="img" />
               ) : (
-                title.children
+                title
               )}
             </div>
-            <div key="content" {...content}>
-              {content.children}
+            <div key="content" className="banner1-content">
+              {content}
             </div>
-            <Button ghost key="button" {...button}>
-              {button.children}
+            <Button ghost key="button" className="banner1-button">
+              {button}
             </Button>
           </QueueAnim>
         </Element>
       );
     });
     return (
-      <div {...props} {...dataSource.wrapper}>
+      <div id="Banner1_0"
+      key="Banner1_0" className="banner1">
         <TweenOneGroup
           key="bannerGroup"
           enter={{ opacity: 0, type: 'from' }}
@@ -54,7 +52,7 @@ class Banner extends React.PureComponent {
           component=""
         >
           <div className="banner1-wrapper" key="wrapper">
-            <BannerAnim key="BannerAnim" {...dataSource.BannerAnim}>
+            <BannerAnim key="BannerAnim" autoPlay>
               {childrenToRender}
             </BannerAnim>
           </div>

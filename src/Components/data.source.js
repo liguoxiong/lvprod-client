@@ -6,22 +6,11 @@ export const Nav00DataSource = {
     className: "header0-logo",
     children: "https://os.alipayobjects.com/rmsportal/mlcYmsRilwraoAe.svg"
   },
-  Menu: {
-    className: "header0-menu",
-    children: [
+  Menu: [
       {
-        name: "item0",
-        className: "header0-item",
-        children: {
-          href: "#",
-          children: [{ children: "Sản phẩm", name: "text" }]
-        },
+        children: [{ children: "Sản phẩm", name: "text" }],
         subItem: [
           {
-            name: "sub0",
-            className: "item-sub",
-            children: {
-              className: "item-sub-item",
               children: [
                 {
                   name: "image0",
@@ -40,13 +29,8 @@ export const Nav00DataSource = {
                   children: "Băng tải công nghiệp"
                 }
               ]
-            }
           },
           {
-            name: "sub1",
-            className: "item-sub",
-            children: {
-              className: "item-sub-item",
               children: [
                 {
                   name: "image0",
@@ -65,37 +49,20 @@ export const Nav00DataSource = {
                   children: "Máy tự động"
                 }
               ]
-            }
+
           }
         ]
       },
       {
-        name: "item1",
-        className: "header0-item",
-        children: {
-          href: "#",
-          children: [{ children: "Dịch vụ", name: "text" }]
-        }
+        children:[{ children: "Dịch vụ", name: "text" }]
       },
       {
-        name: "item2",
-        className: "header0-item",
-        children: {
-          href: "#",
           children: [{ children: "Giới thiệu", name: "text" }]
-        }
       },
       {
-        name: "item3",
-        className: "header0-item",
-        children: {
-          href: "#",
           children: [{ children: "Liên hệ", name: "text" }]
-        }
       }
-    ]
-  },
-  mobileMenu: { className: "header0-mobile-menu" }
+    ],
 };
 export const Banner01DataSource = {
   wrapper: { className: "banner0" },
@@ -111,60 +78,27 @@ export const Banner01DataSource = {
   button: { className: "banner0-button", children: "Đặt mua" }
 };
 export const Banner10DataSource = {
-  wrapper: { className: "banner1" },
-  BannerAnim: {
-    children: [
-      {
-        name: "elem0",
-        BannerElement: { className: "banner-user-elem" },
-        textWrapper: { className: "banner1-text-wrapper" },
-        bg: { className: "bg bg0" },
-        title: {
-          className: "banner1-title",
-          children:
-            "Máy may"
-        },
-        content: {
-          className: "banner1-content",
-          children: "Máy may giày da"
-        },
-        button: { className: "banner1-button", children: "Đặt hàng ngay" }
-      },
-      {
-        name: "elem1",
-        BannerElement: { className: "banner-user-elem" },
-        textWrapper: { className: "banner1-text-wrapper" },
-        bg: { className: "bg bg1" },
-        title: {
-          className: "banner1-title",
-          children:
-            "Băng tải"
-        },
-        content: {
-          className: "banner1-content",
-          children: "Băng tải xích"
-        },
-        button: { className: "banner1-button", children: "Đặt hàng ngay" }
-      },
-      {
-        name: "elem2",
-        BannerElement: { className: "banner-user-elem" },
-        textWrapper: { className: "banner1-text-wrapper" },
-        bg: { className: "bg bg1" },
-        title: {
-          className: "banner1-title",
-          children:
-            ""
-        },
-        content: {
-          className: "banner1-content",
-          children: "Băng tải tự động"
-        },
-        button: { className: "banner1-button", children: "Đặt mua" }
-      }
-    ]
-  }
-};
+         BannerAnim: [
+           {
+             title: 'Máy may',
+             content: 'Máy may giày da',
+             button: 'Đặt hàng ngay' ,
+             image: 'http://bangtaicongnghiep.vn/uploads/Images/bang-tai-xich-1.jpg',
+           },
+           {
+             title: 'Băng tải',
+             content: 'Băng tải xích',
+             button: 'Đặt hàng ngay',
+             image: 'http://bangtai.vn/upload/product/wp20140911001-5156.jpg',
+           },
+           {
+             title: '',
+             content: 'Băng tải tự động',
+             button: 'Đặt mua',
+             image: 'http://bangtai.vn/upload/product/wp20140911001-5156.jpg',
+           },
+         ],
+       };
 export const Content00DataSource = {
   wrapper: { className: "home-page-wrapper content0-wrapper" },
   page: { className: "home-page content0" },
