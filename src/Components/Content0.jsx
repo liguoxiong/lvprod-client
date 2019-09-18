@@ -1,39 +1,37 @@
-import React from 'react';
-import QueueAnim from 'rc-queue-anim';
-import { Row, Col } from 'antd';
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
-import { getChildrenToRender } from './utils';
+import React from "react";
+import QueueAnim from "rc-queue-anim";
+import { Row, Col } from "antd";
+import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
+import { getChildrenToRender } from "./utils";
 
 class Content extends React.PureComponent {
   render() {
-    const { dataSource, isMobile, ...props } = this.props;
-    const {
-      wrapper,
-      titleWrapper,
-      page,
-      OverPack: overPackData,
-      childWrapper,
-    } = dataSource;
+    const { dataSource } = this.props;
+    const { titleWrapper, childWrapper } = dataSource;
     return (
-      <div {...props} {...wrapper}>
-        <div {...page}>
-          <div {...titleWrapper}>
-            {titleWrapper.children.map(getChildrenToRender)}
+      <div className="home-page-wrapper content0-wrapper">
+        <div className="home-page content0">
+          <div className="title-wrapper">
+            {titleWrapper.map(getChildrenToRender)}
           </div>
-          <OverPack {...overPackData}>
+          <OverPack playScale={0.3} className="">
             <QueueAnim
               type="bottom"
               key="block"
               leaveReverse
               component={Row}
-              componentProps={childWrapper}
+              className="content0-block-wrapper"
             >
-              {childWrapper.children.map((block, i) => {
-                const { children: item, ...blockProps } = block;
+              {childWrapper.map((item, i) => {
                 return (
-                  <Col key={i.toString()} {...blockProps}>
-                    <div {...item}>
-                      {item.children.map(getChildrenToRender)}
+                  <Col
+                    key={i.toString()}
+                    className="content0-block"
+                    md={8}
+                    xs={24}
+                  >
+                    <div className="content0-block-item">
+                      {item.map(getChildrenToRender)}
                     </div>
                   </Col>
                 );

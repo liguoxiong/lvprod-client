@@ -1,19 +1,19 @@
-import React from 'react';
-import { Row, Col } from 'antd';
-import { TweenOneGroup } from 'rc-tween-one';
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
-import { getChildrenToRender } from './utils';
+import React from "react";
+import { Row, Col, Button } from "antd";
+import { TweenOneGroup } from "rc-tween-one";
+import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
+import { getChildrenToRender } from "./utils";
 
 class Content5 extends React.PureComponent {
-  getChildrenToRender = (data) =>
-    data.map((item) => {
+  getChildrenToRender = data =>
+    data.map((item, i) => {
       return (
-        <Col key={item.name} {...item}>
-          <div {...item.children.wrapper}>
-            <span {...item.children.img}>
-              <img src={item.children.img.children} height="100%" alt="img" />
+        <Col key={i.toString()} className="block" md={6} xs={24}>
+          <div className="content5-block-content">
+            <span>
+              <img src={item.img} height="100%" alt="img" />
             </span>
-            <p {...item.children.content}>{item.children.content.children}</p>
+            <p>{item.content}</p>
           </div>
         </Col>
       );
@@ -24,30 +24,36 @@ class Content5 extends React.PureComponent {
     const { dataSource } = props;
     delete props.dataSource;
     delete props.isMobile;
-    const childrenToRender = this.getChildrenToRender(
-      dataSource.block.children
-    );
+    const childrenToRender = this.getChildrenToRender(dataSource.block);
     return (
-      <div {...props} {...dataSource.wrapper}>
-        <div {...dataSource.page}>
-          <div key="title" {...dataSource.titleWrapper}>
-            {dataSource.titleWrapper.children.map(getChildrenToRender)}
+      <div
+        id="Content5_0"
+        key="Content5_0"
+        className="home-page-wrapper content5-wrapper"
+      >
+        <div className="home-page content5">
+          <div key="title" className="title-wrapper">
+            {dataSource.titleWrapper.map(getChildrenToRender)}
           </div>
-          <OverPack
-            className={`content-template ${props.className}`}
-            {...dataSource.OverPack}
-          >
+          <div key="categoryList" className="category-wrapper">
+            <Button type="primary">Tất cả</Button>
+            {dataSource.categoriesList.map(item => (
+              <Button>{item.title}</Button>
+            ))}
+          </div>
+          <OverPack className="content-template" playScale={0.3}>
             <TweenOneGroup
               component={Row}
               key="ul"
               enter={{
-                y: '+=30',
+                y: "+=30",
                 opacity: 0,
-                type: 'from',
-                ease: 'easeInOutQuad',
+                type: "from",
+                ease: "easeInOutQuad"
               }}
-              leave={{ y: '+=30', opacity: 0, ease: 'easeInOutQuad' }}
-              {...dataSource.block}
+              leave={{ y: "+=30", opacity: 0, ease: "easeInOutQuad" }}
+              className="content5-img-wrapper"
+              gutter={16}
             >
               {childrenToRender}
             </TweenOneGroup>

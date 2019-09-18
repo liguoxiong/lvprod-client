@@ -9,7 +9,7 @@ import Content0 from "./Content0";
 import Content5 from "./Content5";
 import Content3 from "./Content3";
 import Footer1 from "./Footer1";
-import Products from './Products'
+// import Products from './Products'
 
 import {
   Nav00DataSource,
@@ -76,7 +76,7 @@ export default class Home extends React.Component {
         dataSource={Content50DataSource}
         isMobile={this.state.isMobile}
       />,
-      <Products />,
+      // <Products />,
       <Content3
         id="Content3_0"
         key="Content3_0"
