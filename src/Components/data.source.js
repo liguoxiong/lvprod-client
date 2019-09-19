@@ -367,6 +367,17 @@ export const Content30DataSource = {
     ]
   }
 };
+
+export const ContactSource = {
+  titleWrapper: 'Vui lòng liên hệ với chúng tôi',
+  info: {
+    company: 'Công ty TNHH ABCG Hai Thành Viên',
+    address: '123 ĐườngABC, P.XSO ạdfkf, Q.Thủ Tudsa, Tp. Hồ Chí Minh',
+    email: 'abc@xoz.com',
+    phone: '0982 982 982'
+  }
+};
+
 export const Footer10DataSource = {
   wrapper: { className: "home-page-wrapper footer1-wrapper" },
   OverPack: { className: "footer1", playScale: 0.2 },
