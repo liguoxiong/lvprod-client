@@ -1,0 +1,28 @@
+@import "./custom.less";
+.feedback-form {
+  text-align: center;
+  .form-input {
+    margin: auto;
+    margin-bottom: 10px;
+    input {
+      border-color: @template-bg-color;
+      border-radius: 0;
+      background-color: transparent;
+    }
+    textarea {
+      border-color: @template-bg-color;
+      border-radius: 0;
+      background-color: transparent;
+    }
+    button {
+      background-color: @template-bg-color;
+      color: @template-text-color;
+      border-color: #ffffff;
+      border-radius: 0;
+      &:hover {
+        background-color: @bottom-bar-bg-color;
+        color: #fff;
+      }
+    }
+  }
+}
