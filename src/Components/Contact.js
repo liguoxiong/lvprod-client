@@ -81,7 +81,7 @@ class Contact extends React.PureComponent {
                         <p><Icon type="phone" /> <span> </span>
                         {dataSource.info.phone}</p>
                     </Row>
-                    <Row>
+                    <Row className="icon-wrapper">
                       <div className="icons">
                       <Facebook />
                       </div>

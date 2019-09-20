@@ -369,7 +369,7 @@ export const Content30DataSource = {
 };
 
 export const ContactSource = {
-  titleWrapper: 'Vui lòng liên hệ với chúng tôi',
+  titleWrapper: 'LIÊN HỆ',
   info: {
     company: 'Công ty TNHH ABCG Hai Thành Viên',
     address: '123 ĐườngABC, P.XSO ạdfkf, Q.Thủ Tudsa, Tp. Hồ Chí Minh',
