@@ -4,6 +4,12 @@ import { TweenOneGroup } from "rc-tween-one";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
 import { getChildrenToRender } from "./utils";
 import RequestForm from "./FeedbackForm";
+import { ReactComponent as Facebook } from './../assets/icons/facebook.svg';
+import { ReactComponent as Messenger } from './../assets/icons/messenger.svg';
+import { ReactComponent as Skype } from './../assets/icons/skype.svg';
+import { ReactComponent as Viber } from './../assets/icons/viber.svg';
+import { ReactComponent as Zalo } from './../assets/icons/zalo.svg';
+
 
 class Contact extends React.PureComponent {
   // getChildrenToRender = data =>
@@ -63,33 +69,34 @@ class Contact extends React.PureComponent {
                     className="contact-img-wrapper"
                     gutter={16}
                   >
-                    <Row>
-                      <Col md={2} className="contact-content">
-                        <Icon type="environment" style={{ fontSize: 18 }} />
-                      </Col>
-                      <Col md={22} className="contact-content">
-                        <p>{dataSource.info.address}</p>
-                      </Col>
+                    <Row className="contact-content">
+                        <p><Icon type="environment" /><span> </span>
+                         {dataSource.info.address}</p>
+                    </Row>
+                    <Row className="contact-content">
+                        <p><Icon type="mail" /> <span> </span>
+                        {dataSource.info.email}</p>
+                    </Row>
+                    <Row className="contact-content">
+                        <p><Icon type="phone" /> <span> </span>
+                        {dataSource.info.phone}</p>
                     </Row>
                     <Row>
-                      <Col md={2} className="contact-content">
-                        <Icon type="mail" style={{ fontSize: 18 }} />
-                      </Col>
-                      <Col md={22} className="contact-content">
-                        <p>{dataSource.info.email}</p>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md={2} className="contact-content">
-                        <Icon type="phone" style={{ fontSize: 18 }} />
-                      </Col>
-                      <Col md={22} className="contact-content">
-                        <p>{dataSource.info.phone}</p>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Icon type="facebook" />
-                      <Icon type="phone" />
+                      <div className="icons">
+                      <Facebook />
+                      </div>
+                      <div className="icons">
+                      <Messenger />
+                      </div>
+                      <div className="icons">
+                      <Skype />
+                      </div>
+                      <div className="icons">
+                      <Viber />
+                      </div>
+                      <div className="icons">
+                      <Zalo />
+                      </div>
                     </Row>
                   </TweenOneGroup>
                 </OverPack>
