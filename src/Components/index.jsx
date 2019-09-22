@@ -2,13 +2,14 @@
 /* eslint arrow-parens: 0 */
 import React from "react";
 import { enquireScreen } from "enquire-js";
+import axios from "axios";
 
 import Nav0 from "./Nav0";
 import Banner1 from "./Banner1";
 import Content0 from "./Content0";
 import Content5 from "./Content5";
 import Content3 from "./Content3";
-import Contact from './Contact'
+import Contact from "./Contact";
 import Footer1 from "./Footer1";
 // import Products from './Products'
 
@@ -35,7 +36,9 @@ export default class Home extends React.Component {
     super(props);
     this.state = {
       isMobile,
-      show: !location.port
+      show: !location.port,
+      Banner10DataSource: [],
+      Content00DataSource: []
     };
   }
 
@@ -50,6 +53,25 @@ export default class Home extends React.Component {
         });
       }, 500);
     }
+    axios
+      .all([
+        axios.get("/api/banners?limit=3"),
+        axios.get("/api/services?limit=3"),
+        axios.get("/api/categories")
+      ])
+      .then(
+        axios.spread((banners, services, categories) => {
+          console.log("banner: ", banners.data.data);
+          this.setState({
+            Banner10DataSource: banners.data.data
+          });
+          console.log("services: ", services.data.data);
+          this.setState({
+            Content00DataSource: services.data.data
+          });
+          console.log("categories: ", categories.data.data);
+        })
+      );
   }
 
   render() {
@@ -63,13 +85,13 @@ export default class Home extends React.Component {
       <Banner1
         id="Banner1_0"
         key="Banner1_0"
-        dataSource={Banner10DataSource}
+        dataSource={this.state.Banner10DataSource}
         isMobile={this.state.isMobile}
       />,
       <Content0
         id="Content0_0"
         key="Content0_0"
-        dataSource={Content00DataSource}
+        dataSource={this.state.Content00DataSource}
         isMobile={this.state.isMobile}
       />,
       <Content5

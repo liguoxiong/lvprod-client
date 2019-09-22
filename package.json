@@ -5,6 +5,7 @@
   "homepage": "https://liguoxiong.github.io/lvprod-client",
   "dependencies": {
     "antd": "^3.23.2",
+    "axios": "^0.19.0",
     "babel-plugin-import": "^1.12.1",
     "customize-cra": "^0.6.0",
     "enquire-js": "^0.2.1",
@@ -42,5 +43,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

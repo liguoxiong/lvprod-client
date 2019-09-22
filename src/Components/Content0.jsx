@@ -7,12 +7,11 @@ import { getChildrenToRender } from "./utils";
 class Content extends React.PureComponent {
   render() {
     const { dataSource } = this.props;
-    const { titleWrapper, childWrapper } = dataSource;
     return (
       <div className="home-page-wrapper content0-wrapper">
         <div className="home-page content0">
           <div className="title-wrapper">
-            {titleWrapper.map(getChildrenToRender)}
+            <h1>DỊCH VỤ CỦA CHÚNG TÔI</h1>
           </div>
           <OverPack playScale={0.3} className="">
             <QueueAnim
@@ -22,7 +21,7 @@ class Content extends React.PureComponent {
               component={Row}
               className="content0-block-wrapper"
             >
-              {childWrapper.map((item, i) => {
+              {dataSource.map((item, i) => {
                 return (
                   <Col
                     key={i.toString()}
@@ -31,7 +30,11 @@ class Content extends React.PureComponent {
                     xs={24}
                   >
                     <div className="content0-block-item">
-                      {item.map(getChildrenToRender)}
+                      <div className="content0-block-icon">
+                        <img src={item.image} alt={item.title} />
+                      </div>
+                      <h1 className="content0-block-title">{item.title}</h1>
+                      <div>{item.description}</div>
                     </div>
                   </Col>
                 );

@@ -1,10 +1,10 @@
-import React from 'react';
-import { Button, Icon } from 'antd';
-import QueueAnim from 'rc-queue-anim';
-import TweenOne, { TweenOneGroup } from 'rc-tween-one';
-import BannerAnim, { Element } from 'rc-banner-anim';
-import { isImg } from './utils';
-import 'rc-banner-anim/assets/index.css';
+import React from "react";
+import { Button, Icon } from "antd";
+import QueueAnim from "rc-queue-anim";
+import TweenOne, { TweenOneGroup } from "rc-tween-one";
+import BannerAnim, { Element } from "rc-banner-anim";
+import { isImg } from "./utils";
+import "rc-banner-anim/assets/index.css";
 
 const { BgElement } = Element;
 class Banner extends React.PureComponent {
@@ -13,41 +13,50 @@ class Banner extends React.PureComponent {
     const { dataSource } = props;
     delete props.dataSource;
     delete props.isMobile;
-    const childrenToRender = dataSource.BannerAnim.map((item, i) => {
-      const { title, content, button } = item;
+    const childrenToRender = dataSource.map((item, i) => {
+      const { title, description, image } = item;
       return (
-        <Element key={i.toString()} className="banner-user-elem" prefixCls="banner-user-elem">
-          <BgElement key="bg" style={{backgroundImage: `url(${item.image})`, backgroundPosition: "center"}} className="bg" />
+        <Element
+          key={i.toString()}
+          className="banner-user-elem"
+          prefixCls="banner-user-elem"
+        >
+          <BgElement
+            key="bg"
+            style={{
+              backgroundImage: `url(${image})`,
+              backgroundPosition: "center"
+            }}
+            className="bg"
+          />
           <QueueAnim
-            type={['bottom', 'top']}
+            type={["bottom", "top"]}
             delay={200}
             key="text"
             className="banner1-text-wrapper"
           >
             <div key="logo" className="banner1-title">
-              {typeof title === 'string' &&
-              title.match(isImg) ? (
+              {typeof title === "string" && title.match(isImg) ? (
                 <img src={title} width="100%" alt="img" />
               ) : (
                 title
               )}
             </div>
             <div key="content" className="banner1-content">
-              {content}
+              {description}
             </div>
             <Button ghost key="button" className="banner1-button">
-              {button}
+              Liên Hệ Đặt Hàng
             </Button>
           </QueueAnim>
         </Element>
       );
     });
     return (
-      <div id="Banner1_0"
-      key="Banner1_0" className="banner1">
+      <div id="Banner1_0" key="Banner1_0" className="banner1">
         <TweenOneGroup
           key="bannerGroup"
-          enter={{ opacity: 0, type: 'from' }}
+          enter={{ opacity: 0, type: "from" }}
           leave={{ opacity: 0 }}
           component=""
         >
@@ -59,10 +68,10 @@ class Banner extends React.PureComponent {
         </TweenOneGroup>
         <TweenOne
           animation={{
-            y: '-=20',
+            y: "-=20",
             yoyo: true,
             repeat: -1,
-            duration: 1000,
+            duration: 1000
           }}
           className="banner1-icon"
           style={{ bottom: 40 }}
