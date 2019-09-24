@@ -38,7 +38,8 @@ export default class Home extends React.Component {
       isMobile,
       show: !location.port,
       Banner10DataSource: [],
-      Content00DataSource: []
+      Content00DataSource: [],
+      AllCategory: [],
     };
   }
 
@@ -70,6 +71,9 @@ export default class Home extends React.Component {
             Content00DataSource: services.data.data
           });
           console.log("categories: ", categories.data.data);
+          this.setState({
+            AllCategory: categories.data.data
+          });
         })
       );
   }
@@ -97,7 +101,7 @@ export default class Home extends React.Component {
       <Content5
         id="Content5_0"
         key="Content5_0"
-        dataSource={Content50DataSource}
+        dataSource={this.state.AllCategory}
         isMobile={this.state.isMobile}
       />,
       // <Products />,
