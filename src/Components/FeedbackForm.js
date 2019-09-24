@@ -1,14 +1,28 @@
 import React from "react";
+import axios from "axios";
 import { Form, Icon, Input, Button, Row, Col } from "antd";
 import "./less/feedbackForm.less";
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
+  state = {
+    loading: false
+  };
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
+        this.setState({ loading: true });
+        axios
+          .post("/api/sendmail", values)
+          .then(res => {
+            this.setState({ loading: false });
+            alert("Gửi yêu cầu thành công");
+          })
+          .catch(err => {
+            this.setState({ loading: false });
+            alert("Có lỗi xảy ra, vui lòng thử lại");
+          });
       }
     });
   };
@@ -74,7 +88,7 @@ class NormalLoginForm extends React.Component {
         <Row>
           <Col>
             <FormItem className="form-input">
-              {getFieldDecorator("content", {
+              {getFieldDecorator("message", {
                 rules: [{ required: true, message: "Vui lòng nhập yêu cầu" }]
               })(<Input.TextArea rows={4} placeholder="Yêu cầu" />)}
             </FormItem>
@@ -85,6 +99,7 @@ class NormalLoginForm extends React.Component {
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            loading={this.state.loading}
           >
             Gửi yêu cầu
           </Button>
