@@ -11,6 +11,7 @@ import Content5 from "./Content5";
 import Content3 from "./Content3";
 import Contact from "./Contact";
 import Footer1 from "./Footer1";
+import Team1 from './Teams1'
 // import Products from './Products'
 
 import {
@@ -20,7 +21,8 @@ import {
   Content50DataSource,
   Content30DataSource,
   ContactSource,
-  Footer10DataSource
+  Footer10DataSource,
+  Teams10DataSource
 } from "./data.source";
 import "./less/antMotionStyle.less";
 
@@ -110,10 +112,16 @@ export default class Home extends React.Component {
         isMobile={this.state.isMobile}
       />,
       // <Products />,
-      <Content3
-        id="Content3_0"
-        key="Content3_0"
-        dataSource={Content30DataSource}
+      // <Content3
+      //   id="Content3_0"
+      //   key="Content3_0"
+      //   dataSource={Content30DataSource}
+      //   isMobile={this.state.isMobile}
+      // />,
+      <Team1
+        id="Team1_0"
+        key="Team1_0"
+        dataSource={this.state.Content00DataSource}
         isMobile={this.state.isMobile}
       />,
       <Contact

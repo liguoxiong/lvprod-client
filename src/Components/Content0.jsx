@@ -33,8 +33,8 @@ class Content extends React.PureComponent {
                       <div className="content0-block-icon">
                         <img src={item.image} alt={item.title} />
                       </div>
-                      <h1 className="content0-block-title">{item.title}</h1>
-                      <div>{item.description}</div>
+                      <h1 className="content0-block-title"><span>{item.title}</span></h1>
+                      <div><span>{item.description}</span></div>
                     </div>
                   </Col>
                 );
