@@ -11,7 +11,7 @@ import { ReactComponent as Viber } from './../assets/icons/viber.svg';
 import { ReactComponent as Zalo } from './../assets/icons/zalo.svg';
 
 
-class Contact extends React.PureComponent {
+class Contact extends React.Component {
   // getChildrenToRender = data =>
   //   data.map((item, i) => {
   //     return (
@@ -41,7 +41,7 @@ class Contact extends React.PureComponent {
         <div className="home-page contact">
           <Row>
             <div key="title" className="title-wrapper">
-              <h1>{dataSource.titleWrapper}</h1>
+              <h1>LIÊN HỆ</h1>
             </div>
           </Row>
           <Row>
@@ -53,7 +53,7 @@ class Contact extends React.PureComponent {
             <Col className="block" md={16} xs={24}>
               <div className="home-page contact">
                 <div key="company" className="title-wrapper">
-                  <h2>{dataSource.info.company}</h2>
+                  <h2>{!!dataSource && dataSource.company}</h2>
                 </div>
                 <OverPack className="content-template" playScale={0.3}>
                   <TweenOneGroup
@@ -71,15 +71,15 @@ class Contact extends React.PureComponent {
                   >
                     <Row className="contact-content">
                         <p><Icon type="environment" /><span> </span>
-                         {dataSource.info.address}</p>
+                         {dataSource.address}</p>
                     </Row>
                     <Row className="contact-content">
                         <p><Icon type="mail" /> <span> </span>
-                        {dataSource.info.email}</p>
+                        {dataSource.email}</p>
                     </Row>
                     <Row className="contact-content">
                         <p><Icon type="phone" /> <span> </span>
-                        {dataSource.info.phone}</p>
+                        {dataSource.phone}</p>
                     </Row>
                     <Row className="icon-wrapper">
                       <div className="icons">
