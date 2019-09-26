@@ -11,7 +11,7 @@ import Content5 from "./Content5";
 import Content3 from "./Content3";
 import Contact from "./Contact";
 import Footer1 from "./Footer1";
-import Team1 from './Teams1'
+import Team1 from "./Teams1";
 // import Products from './Products'
 
 import {
@@ -43,7 +43,7 @@ export default class Home extends React.Component {
       Content00DataSource: [],
       AllCategory: [],
       Info: {},
-      constructions: [],
+      constructions: []
     };
   }
 
@@ -96,7 +96,10 @@ export default class Home extends React.Component {
       <Nav0
         id="Nav0_0"
         key="Nav0_0"
-        dataSource={Nav00DataSource}
+        dataSource={{
+          category: this.state.AllCategory,
+          logo: this.state.Info.logo
+        }}
         isMobile={this.state.isMobile}
       />,
       <Banner1

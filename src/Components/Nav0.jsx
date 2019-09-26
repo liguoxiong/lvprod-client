@@ -1,56 +1,77 @@
-import React from 'react';
-import TweenOne from 'rc-tween-one';
-import { Menu } from 'antd';
-import { getChildrenToRender } from './utils';
+import React from "react";
+import TweenOne from "rc-tween-one";
+import { Menu } from "antd";
+import { getChildrenToRender } from "./utils";
 
 const { Item, SubMenu } = Menu;
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
+    this.menu = {
+      logo: this.props.dataSource.logo,
+      // logo: "https://os.alipayobjects.com/rmsportal/mlcYmsRilwraoAe.svg",
+      Menu: [
+        {
+          children: "Sản phẩm",
+          subItem: this.props.dataSource.category
+        },
+        {
+          children: "Dịch vụ"
+        },
+        {
+          children: "Giới thiệu"
+        },
+        {
+          children: "Liên hệ"
+        }
+      ]
+    };
     this.state = {
-      phoneOpen: undefined,
+      phoneOpen: undefined
     };
   }
 
   phoneClick = () => {
     const phoneOpen = !this.state.phoneOpen;
     this.setState({
-      phoneOpen,
+      phoneOpen
     });
   };
 
   render() {
-    const { dataSource, isMobile } = this.props;
+    console.log(this.props.dataSource);
+    const { isMobile } = this.props;
     const { phoneOpen } = this.state;
-    const navData = dataSource.Menu;
+    const navData = this.menu.Menu;
     const navChildren = navData.map((item, i) => {
-      const { children: a, subItem } = item;
+      const { children, subItem } = item;
       if (subItem) {
         return (
           <SubMenu
-            key={i.children}
+            key={i.toString()}
             className="header0-item"
             title={
-              <div
-                href='#'
-                className="header0-item-block"
-              >
-                {a.map(getChildrenToRender)}
+              <div href="#" className="header0-item-block">
+                <div name="text">{children}</div>
               </div>
             }
             popupClassName="header0-item-child"
           >
             {subItem.map(($item, ii) => {
-              const { children: childItem } = $item;
-              const child = 
-                <div className="item-sub-item">
-                  {childItem.map(getChildrenToRender)}
-                </div>
-            
               return (
                 <Item key={ii.toString()} className="item-sub">
-                  {child}
+                  <div className="item-sub-item">
+                    <div className="item-image">
+                      <img src={$item.image} alt={$item.title}></img>
+                    </div>
+                    <h1 name="title" className="item-title">
+                      {$item.title}
+                    </h1>
+                    <div name="content" className="item-content">
+                      {$item.description}
+                    </div>
+                  </div>
                 </Item>
               );
             })}
@@ -60,7 +81,7 @@ class Header extends React.Component {
       return (
         <Item key={i.toString()} className="header0-item">
           <a href="#" className="header0-item-block">
-            {a.map(getChildrenToRender)}
+            <div name="text">{children}</div>
           </a>
         </Item>
       );
@@ -69,21 +90,19 @@ class Header extends React.Component {
     return (
       <TweenOne
         component="header"
-        animation={{ opacity: 0, type: 'from' }}
+        animation={{ opacity: 0, type: "from" }}
         className="header0 home-page-wrapper"
       >
-        <div
-          className={`home-page${phoneOpen ? ' open' : ''}`}
-        >
+        <div className={`home-page${phoneOpen ? " open" : ""}`}>
           <TweenOne
-            animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
+            animation={{ x: -30, type: "from", ease: "easeOutQuad" }}
             className="header0-logo"
-            >
-            <img width="100%" src={dataSource.logo.children} alt="img" />
+          >
+            <img height="34px" src={this.menu.logo} alt="img" />
           </TweenOne>
           {isMobile && (
             <div
-            className="header0-mobile-menu"
+              className="header0-mobile-menu"
               onClick={() => {
                 this.phoneClick();
               }}
@@ -100,12 +119,12 @@ class Header extends React.Component {
                 ? {
                     height: 0,
                     duration: 300,
-                    onComplete: (e) => {
+                    onComplete: e => {
                       if (this.state.phoneOpen) {
-                        e.target.style.height = 'auto';
+                        e.target.style.height = "auto";
                       }
                     },
-                    ease: 'easeInOutQuad',
+                    ease: "easeInOutQuad"
                   }
                 : null
             }
@@ -113,8 +132,8 @@ class Header extends React.Component {
             reverse={!!phoneOpen}
           >
             <Menu
-              mode={isMobile ? 'inline' : 'horizontal'}
-              defaultSelectedKeys={['sub0']}
+              mode={isMobile ? "inline" : "horizontal"}
+              defaultSelectedKeys={["sub0"]}
               theme="dark"
             >
               {navChildren}

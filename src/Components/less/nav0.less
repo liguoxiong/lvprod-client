@@ -45,7 +45,7 @@
     &-block {
       padding: 0 8px;
 
-      >* {
+      > * {
         display: inline-block;
       }
     }
@@ -54,7 +54,6 @@
   &-item,
   &-item-child,
   &-menu {
-
     .ant-menu-sub .ant-menu-item,
     .ant-menu-inline .ant-menu-item {
       height: auto;
@@ -70,9 +69,14 @@
       &-image {
         float: left;
         margin-right: 16px;
+        width: 25px;
+        height: 25px;
         margin-top: 4px;
         position: relative;
         z-index: 1;
+        img {
+          width: 100%;
+        }
       }
 
       &-title {
@@ -107,7 +111,7 @@
       left: -24px;
       width: ~"calc(100% + 48px)";
       opacity: 0;
-      transition: opacity .3s @ease-in-out;
+      transition: opacity 0.3s @ease-in-out;
 
       & li {
         padding: 0 24px;
@@ -138,7 +142,7 @@
         height: 2px;
         background: #fff;
         margin-top: 4px;
-        transition: transform .3s @ease-in-out, opacity .3s @ease-in-out;
+        transition: transform 0.3s @ease-in-out, opacity 0.3s @ease-in-out;
       }
 
       :first-child {
@@ -174,7 +178,7 @@
         }
       }
 
-      >.@{header0}-menu {
+      > .@{header0}-menu {
         opacity: 1;
         pointer-events: auto;
       }

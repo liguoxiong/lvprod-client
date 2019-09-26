@@ -4,12 +4,11 @@ import { TweenOneGroup } from "rc-tween-one";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
 import { getChildrenToRender } from "./utils";
 import RequestForm from "./FeedbackForm";
-import { ReactComponent as Facebook } from './../assets/icons/facebook.svg';
-import { ReactComponent as Messenger } from './../assets/icons/messenger.svg';
-import { ReactComponent as Skype } from './../assets/icons/skype.svg';
-import { ReactComponent as Viber } from './../assets/icons/viber.svg';
-import { ReactComponent as Zalo } from './../assets/icons/zalo.svg';
-
+import { ReactComponent as Facebook } from "./../assets/icons/facebook.svg";
+import { ReactComponent as Messenger } from "./../assets/icons/messenger.svg";
+import { ReactComponent as Skype } from "./../assets/icons/skype.svg";
+import { ReactComponent as Viber } from "./../assets/icons/viber.svg";
+import { ReactComponent as Zalo } from "./../assets/icons/zalo.svg";
 
 class Contact extends React.Component {
   // getChildrenToRender = data =>
@@ -70,33 +69,64 @@ class Contact extends React.Component {
                     gutter={16}
                   >
                     <Row className="contact-content">
-                        <p><Icon type="environment" /><span> </span>
-                         {dataSource.address}</p>
+                      <p>
+                        <Icon type="environment" />
+                        <span> </span>
+                        {dataSource.address}
+                      </p>
                     </Row>
                     <Row className="contact-content">
-                        <p><Icon type="mail" /> <span> </span>
-                        {dataSource.email}</p>
+                      <p>
+                        <Icon type="mail" /> <span> </span>
+                        {dataSource.email}
+                      </p>
                     </Row>
                     <Row className="contact-content">
-                        <p><Icon type="phone" /> <span> </span>
-                        {dataSource.phone}</p>
+                      <p>
+                        <Icon type="phone" /> <span> </span>
+                        {dataSource.phone}
+                      </p>
                     </Row>
                     <Row className="icon-wrapper">
+                      <a className="icons" href={dataSource.facebook}>
+                        <Facebook />
+                      </a>
+                      <a
+                        className="icons"
+                        href={
+                          dataSource.messenger
+                            ? dataSource.messenger.replace(
+                                "www.facebook.com",
+                                "m.me"
+                              )
+                            : ""
+                        }
+                      >
+                        <Messenger />
+                      </a>
                       <div className="icons">
-                      <Facebook />
+                        <Skype />
                       </div>
-                      <div className="icons">
-                      <Messenger />
+                      <div
+                        className="icons"
+                        href={
+                          dataSource.phone
+                            ? `tel:${dataSource.phone.replace(/\s/g, "")}`
+                            : ""
+                        }
+                      >
+                        <Viber />
                       </div>
-                      <div className="icons">
-                      <Skype />
-                      </div>
-                      <div className="icons">
-                      <Viber />
-                      </div>
-                      <div className="icons">
-                      <Zalo />
-                      </div>
+                      <a
+                        className="icons"
+                        href={
+                          dataSource.zalo
+                            ? `http://zalo.me/${dataSource.zalo}`
+                            : ""
+                        }
+                      >
+                        <Zalo />
+                      </a>
                     </Row>
                   </TweenOneGroup>
                 </OverPack>
