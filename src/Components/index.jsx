@@ -63,7 +63,7 @@ export default class Home extends React.Component {
         axios.get("/api/banners?limit=3"),
         axios.get("/api/services?limit=3"),
         axios.get("/api/categories"),
-        axios.get("/api/constructions"),
+        axios.get("/api/constructions?limit=3"),
         axios.get("/api/info")
       ])
       .then(
