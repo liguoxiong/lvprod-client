@@ -43,6 +43,7 @@ export default class Home extends React.Component {
       Content00DataSource: [],
       AllCategory: [],
       Info: {},
+      constructions: [],
     };
   }
 
@@ -62,10 +63,11 @@ export default class Home extends React.Component {
         axios.get("/api/banners?limit=3"),
         axios.get("/api/services?limit=3"),
         axios.get("/api/categories"),
+        axios.get("/api/constructions"),
         axios.get("/api/info")
       ])
       .then(
-        axios.spread((banners, services, categories, info) => {
+        axios.spread((banners, services, categories, constructions, info) => {
           console.log("banner: ", banners.data.data);
           this.setState({
             Banner10DataSource: banners.data.data
@@ -77,6 +79,10 @@ export default class Home extends React.Component {
           console.log("categories: ", categories.data.data);
           this.setState({
             AllCategory: categories.data.data
+          });
+          console.log("constructions: ", constructions.data.data);
+          this.setState({
+            constructions: constructions.data.data
           });
           this.setState({
             Info: info.data.data[0]
@@ -121,7 +127,7 @@ export default class Home extends React.Component {
       <Team1
         id="Team1_0"
         key="Team1_0"
-        dataSource={this.state.Content00DataSource}
+        dataSource={this.state.constructions}
         isMobile={this.state.isMobile}
       />,
       <Contact

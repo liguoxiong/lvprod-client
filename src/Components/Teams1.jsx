@@ -48,7 +48,7 @@ class Teams1 extends React.PureComponent {
                   >
                     <div className="block" >
                       <div className="teams1-image">
-                        <img src={item.image} alt={item.title} />
+                        <img src={item.image[0].url} alt={item.title} />
                       </div>
                       <h1 className="'teams1-title'"><span>{item.title}</span></h1>
                       <div className="teams1-content"><span>{item.description}</span></div>
