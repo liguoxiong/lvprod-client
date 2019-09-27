@@ -30,7 +30,7 @@ class Content5 extends React.Component {
         <Col key={i.toString()} className="block" md={6} xs={24}>
           <div className="content5-block-content">
             <span>
-              <img src={item.image[0].thumbUrl} height="100%" alt="img" />
+              <img src={item.image[0].thumbUrl || item.image[0].url} height="100%" alt="img" />
             </span>
             <p>{item.name}</p>
           </div>
