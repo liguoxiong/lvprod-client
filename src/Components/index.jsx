@@ -12,7 +12,7 @@ import Content3 from "./Content3";
 import Contact from "./Contact";
 import Footer1 from "./Footer1";
 import Team1 from "./Teams1";
-import Video from './Video'
+import Video from "./Video";
 import "./less/antMotionStyle.less";
 
 let isMobile;
@@ -23,39 +23,39 @@ enquireScreen(b => {
 const { location } = window;
 
 const Content40DataSource = {
-  wrapper: { className: 'home-page-wrapper content4-wrapper' },
-  page: { className: 'home-page content4' },
-  OverPack: { playScale: 0.3, className: '' },
+  wrapper: { className: "home-page-wrapper content4-wrapper" },
+  page: { className: "home-page content4" },
+  OverPack: { playScale: 0.3, className: "" },
   titleWrapper: {
-    className: 'title-wrapper',
+    className: "title-wrapper",
     children: [
       {
-        name: 'title',
+        name: "title",
         children: (
           <>
             <p>Title Video</p>
           </>
         ),
-        className: 'title-h1',
+        className: "title-h1"
       },
       {
-        name: 'content',
-        className: 'title-content content4-title-content',
+        name: "content",
+        className: "title-content content4-title-content",
         children: (
           <>
             <p>Description</p>
           </>
-        ),
-      },
-    ],
+        )
+      }
+    ]
   },
   video: {
-    className: 'content4-video',
+    className: "content4-video",
     children: {
-      video: 'https://www.youtube.com/watch?v=c3WiRVkQ6IM&feature=share',
-      image: 'https://zos.alipayobjects.com/rmsportal/HZgzhugQZkqUwBVeNyfz.jpg',
-    },
-  },
+      video: "https://www.youtube.com/watch?v=c3WiRVkQ6IM&feature=share",
+      image: "https://zos.alipayobjects.com/rmsportal/HZgzhugQZkqUwBVeNyfz.jpg"
+    }
+  }
 };
 
 export default class Home extends React.Component {
@@ -65,7 +65,7 @@ export default class Home extends React.Component {
       isMobile,
       show: !location.port,
       Banner10DataSource: [],
-      Content00DataSource: [],
+      Services: [],
       AllCategory: [],
       Info: {},
       constructions: []
@@ -99,7 +99,7 @@ export default class Home extends React.Component {
           });
           console.log("services: ", services.data.data);
           this.setState({
-            Content00DataSource: services.data.data
+            Services: services.data.data
           });
           console.log("categories: ", categories.data.data);
           this.setState({
@@ -136,15 +136,15 @@ export default class Home extends React.Component {
       <Content0
         id="Content0_0"
         key="Content0_0"
-        dataSource={this.state.Content00DataSource}
+        dataSource={this.state.Services}
         isMobile={this.state.isMobile}
       />,
-      <Video
-        id="Content4_0"
-        key="Content4_0"
-        dataSource={Content40DataSource}
-        isMobile={this.state.isMobile}
-      />,
+      // <Video
+      //   id="Content4_0"
+      //   key="Content4_0"
+      //   dataSource={Content40DataSource}
+      //   isMobile={this.state.isMobile}
+      // />,
       <Content5
         id="Content5_0"
         key="Content5_0"
@@ -173,7 +173,11 @@ export default class Home extends React.Component {
       <Footer1
         id="Footer1_0"
         key="Footer1_0"
-        dataSource={{info: this.state.Info, category: this.state.AllCategory}}
+        dataSource={{
+          info: this.state.Info,
+          category: this.state.AllCategory,
+          services: this.state.Services
+        }}
         isMobile={this.state.isMobile}
       />
     ];

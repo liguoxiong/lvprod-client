@@ -1,41 +1,55 @@
-import React from 'react';
-import TweenOne from 'rc-tween-one';
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
-import QueueAnim from 'rc-queue-anim';
-import { Row, Col } from 'antd';
-import { getChildrenToRender } from './utils';
-import { isImg } from './utils';
+import React from "react";
+import TweenOne from "rc-tween-one";
+import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
+import QueueAnim from "rc-queue-anim";
+import { Row, Col } from "antd";
+import { getChildrenToRender } from "./utils";
+import { isImg } from "./utils";
 
 class Footer extends React.Component {
   static defaultProps = {
-    className: 'footer1',
+    className: "footer1"
   };
 
   state = {
     info: this.props.dataSource.info,
-    category: this.props.dataSource.category
-  }
+    category: this.props.dataSource.category,
+    services: this.props.dataSource.services
+  };
 
   componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
     if (this.props.dataSource !== prevProps.dataSource) {
-      this.setState({info: this.props.dataSource.info, category: this.props.dataSource.category});
+      this.setState({
+        info: this.props.dataSource.info,
+        category: this.props.dataSource.category,
+        services: this.props.dataSource.services
+      });
     }
   }
 
-  categoryMap = (category) => (
+  categoryMap = category =>
     category.map((item, i) => ({
-      link: `link${i}`, href: '#', children: item.title
-    }))
-  )
+      link: `link${i}`,
+      href: "#",
+      children: item.title
+    }));
 
-  getLiChildren = (data) =>
+  getLiChildren = data =>
     data.map((item, i) => {
       const { title, childWrapper, ...itemProps } = item;
       return (
-        <Col key={i.toString()} name="category" xs={24} md={6} className="block" title={null} content={null}>
+        <Col
+          key={i.toString()}
+          name="category"
+          xs={24}
+          md={6}
+          className="block"
+          title={null}
+          content={null}
+        >
           <h2>
-            {typeof title.children === 'string' &&
+            {typeof title.children === "string" &&
             title.children.match(isImg) ? (
               <img src={title.children} width="100%" alt="img" />
             ) : (
@@ -50,10 +64,10 @@ class Footer extends React.Component {
     });
 
   render() {
-    const {info, category} = this.state;
-    console.log(info)
-    console.log(category)
-    console.log(this.categoryMap(category))
+    const { info, category, services } = this.state;
+    console.log(info);
+    console.log(category);
+    console.log(this.categoryMap(category));
     const data = {
       children: [
         {
@@ -112,18 +126,99 @@ class Footer extends React.Component {
             className="home-page"
             gutter={0}
           >
-            {childrenToRender}
+            <Col
+              name="category"
+              xs={24}
+              md={6}
+              className="block"
+              title={null}
+              content={null}
+            >
+              <h2>
+                <img src={info.logo} width="100%" alt="img" />
+              </h2>
+              <div className="slogan">Dịch vụ hàng đầu tại Việt Nam</div>
+            </Col>
+            <Col
+              name="category"
+              xs={24}
+              md={6}
+              className="block"
+              title={null}
+              content={null}
+            >
+              <h2>Sản phẩm</h2>
+              <div>
+                {category.map(item => (
+                  <div key={item._id}>
+                    <a href="#">{item.title}</a>
+                  </div>
+                ))}
+              </div>
+            </Col>
+            <Col
+              name="category"
+              xs={24}
+              md={6}
+              className="block"
+              title={null}
+              content={null}
+            >
+              <h2>Dịch vụ</h2>
+              <div>
+                {services.map(item => (
+                  <div key={item._id}>
+                    <a href="#">{item.title}</a>
+                  </div>
+                ))}
+              </div>
+            </Col>
+            <Col
+              name="category"
+              xs={24}
+              md={6}
+              className="block"
+              title={null}
+              content={null}
+            >
+              <h2>Liên kết</h2>
+              <div
+                className="fb-page"
+                data-tabs="timeline,messages"
+                data-href="https://www.facebook.com/DaiThienLocDecor"
+                data-width="380"
+                data-hide-cover="false"
+              >
+                <blockquote
+                  cite="https://www.facebook.com/DaiThienLocDecor"
+                  className="fb-xfbml-parse-ignore"
+                >
+                  <a href="https://www.facebook.com/DaiThienLocDecor">
+                    DTL Decor 3D
+                  </a>
+                </blockquote>
+              </div>
+              <div>
+                <iframe
+                  title="Youtube"
+                  width="160"
+                  height="90"
+                  src="https://www.youtube.com/embed/hsGXrA7OyuY?playlist=hsGXrA7OyuY&loop=1"
+                ></iframe>
+              </div>
+            </Col>
           </QueueAnim>
           <TweenOne
-            animation={{ y: '+=30', opacity: 0, type: 'from' }}
+            animation={{ y: "+=30", opacity: 0, type: "from" }}
             key="copyright"
             className="copyright-wrapper"
           >
             <div className="home-page">
               <div className="copyright">
-              <span>
-          ©2019 by <a href="https://vulocgroup.com">Vulocgroup</a> All Rights Reserved
-              </span>
+                <span>
+                  ©2019 by <a href="https://vulocgroup.com">Vulocgroup</a> All
+                  Rights Reserved
+                </span>
               </div>
             </div>
           </TweenOne>
