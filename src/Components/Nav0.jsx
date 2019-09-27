@@ -1,20 +1,42 @@
 import React from "react";
 import TweenOne from "rc-tween-one";
 import { Menu } from "antd";
-import { getChildrenToRender } from "./utils";
 
 const { Item, SubMenu } = Menu;
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.menu = {
+    this.state = {
+      phoneOpen: undefined,
       logo: this.props.dataSource.logo,
+      subItem: this.props.dataSource.category
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.dataSource !== prevProps.dataSource) {
+      this.setState({logo: this.props.dataSource.logo, subItem: this.props.dataSource.category});
+    }
+  }
+
+  phoneClick = () => {
+    const phoneOpen = !this.state.phoneOpen;
+    this.setState({
+      phoneOpen
+    });
+  };
+
+  render() {
+    console.log(this.state.subItem)
+    const menu = {
+      logo: this.state.logo,
       // logo: "https://os.alipayobjects.com/rmsportal/mlcYmsRilwraoAe.svg",
       Menu: [
         {
           children: "Sản phẩm",
-          subItem: this.props.dataSource.category
+          subItem: this.state.subItem
         },
         {
           children: "Dịch vụ"
@@ -27,23 +49,9 @@ class Header extends React.Component {
         }
       ]
     };
-    this.state = {
-      phoneOpen: undefined
-    };
-  }
-
-  phoneClick = () => {
-    const phoneOpen = !this.state.phoneOpen;
-    this.setState({
-      phoneOpen
-    });
-  };
-
-  render() {
-    console.log(this.props.dataSource);
     const { isMobile } = this.props;
     const { phoneOpen } = this.state;
-    const navData = this.menu.Menu;
+    const navData = menu.Menu;
     const navChildren = navData.map((item, i) => {
       const { children, subItem } = item;
       if (subItem) {
@@ -98,7 +106,7 @@ class Header extends React.Component {
             animation={{ x: -30, type: "from", ease: "easeOutQuad" }}
             className="header0-logo"
           >
-            <img height="34px" src={this.menu.logo} alt="img" />
+            <img height="34px" src={menu.logo} alt="img" />
           </TweenOne>
           {isMobile && (
             <div

@@ -477,17 +477,9 @@ export const Teams10DataSource = {
 };
 
 export const Footer10DataSource = {
-  wrapper: { className: "home-page-wrapper footer1-wrapper" },
-  OverPack: { className: "footer1", playScale: 0.2 },
   block: {
-    className: "home-page",
-    gutter: 0,
     children: [
       {
-        name: "block0",
-        xs: 24,
-        md: 6,
-        className: "block",
         title: {
           className: "logo",
           children:
@@ -504,10 +496,6 @@ export const Footer10DataSource = {
         }
       },
       {
-        name: "block1",
-        xs: 24,
-        md: 6,
-        className: "block",
         title: { children: "Sản phẩm" },
         childWrapper: {
           children: [
@@ -519,10 +507,6 @@ export const Footer10DataSource = {
         }
       },
       {
-        name: "block2",
-        xs: 24,
-        md: 6,
-        className: "block",
         title: { children: "Tin tức" },
         childWrapper: {
           children: [
@@ -532,10 +516,6 @@ export const Footer10DataSource = {
         }
       },
       {
-        name: "block3",
-        xs: 24,
-        md: 6,
-        className: "block",
         title: { children: "Liên kết" },
         childWrapper: {
           children: [
@@ -546,17 +526,4 @@ export const Footer10DataSource = {
       }
     ]
   },
-  copyrightWrapper: { className: "copyright-wrapper" },
-  copyrightPage: { className: "home-page" },
-  copyright: {
-    className: "copyright",
-    children: (
-      <>
-        <span>
-          ©2019 by <a href="https://motion.ant.design">LVProduct</a> All Rights
-          Reserved
-        </span>
-      </>
-    )
-  }
 };

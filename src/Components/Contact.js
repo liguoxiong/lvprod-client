@@ -1,8 +1,7 @@
 import React from "react";
-import { Row, Col, Button, Icon } from "antd";
+import { Row, Col, Icon } from "antd";
 import { TweenOneGroup } from "rc-tween-one";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
-import { getChildrenToRender } from "./utils";
 import RequestForm from "./FeedbackForm";
 import { ReactComponent as Facebook } from "./../assets/icons/facebook.svg";
 import { ReactComponent as Messenger } from "./../assets/icons/messenger.svg";
