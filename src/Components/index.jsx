@@ -6,24 +6,13 @@ import axios from "axios";
 
 import Nav0 from "./Nav0";
 import Banner1 from "./Banner1";
-import Content0 from "./Content0";
+import Content0 from "./Service";
 import Content5 from "./Content5";
 import Content3 from "./Content3";
 import Contact from "./Contact";
 import Footer1 from "./Footer1";
 import Team1 from "./Teams1";
-// import Products from './Products'
-
-import {
-  Nav00DataSource,
-  Banner10DataSource,
-  Content00DataSource,
-  Content50DataSource,
-  Content30DataSource,
-  ContactSource,
-  Footer10DataSource,
-  Teams10DataSource
-} from "./data.source";
+import Video from './Video'
 import "./less/antMotionStyle.less";
 
 let isMobile;
@@ -32,6 +21,42 @@ enquireScreen(b => {
 });
 
 const { location } = window;
+
+const Content40DataSource = {
+  wrapper: { className: 'home-page-wrapper content4-wrapper' },
+  page: { className: 'home-page content4' },
+  OverPack: { playScale: 0.3, className: '' },
+  titleWrapper: {
+    className: 'title-wrapper',
+    children: [
+      {
+        name: 'title',
+        children: (
+          <>
+            <p>Title Video</p>
+          </>
+        ),
+        className: 'title-h1',
+      },
+      {
+        name: 'content',
+        className: 'title-content content4-title-content',
+        children: (
+          <>
+            <p>Description</p>
+          </>
+        ),
+      },
+    ],
+  },
+  video: {
+    className: 'content4-video',
+    children: {
+      video: 'https://www.youtube.com/watch?v=c3WiRVkQ6IM&feature=share',
+      image: 'https://zos.alipayobjects.com/rmsportal/HZgzhugQZkqUwBVeNyfz.jpg',
+    },
+  },
+};
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -112,6 +137,12 @@ export default class Home extends React.Component {
         id="Content0_0"
         key="Content0_0"
         dataSource={this.state.Content00DataSource}
+        isMobile={this.state.isMobile}
+      />,
+      <Video
+        id="Content4_0"
+        key="Content4_0"
+        dataSource={Content40DataSource}
         isMobile={this.state.isMobile}
       />,
       <Content5

@@ -2,7 +2,6 @@ import React from "react";
 import QueueAnim from "rc-queue-anim";
 import { Row, Col } from "antd";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
-import { getChildrenToRender } from "./utils";
 
 class Content extends React.PureComponent {
   render() {
@@ -31,7 +30,7 @@ class Content extends React.PureComponent {
                   >
                     <div className="content0-block-item">
                       <div className="content0-block-icon">
-                        <img src={item.image} alt={item.title} />
+                        <img src={item.image} alt={item.title} height="100%"/>
                       </div>
                       <h1 className="content0-block-title"><span>{item.title}</span></h1>
                       <div><span>{item.description}</span></div>
