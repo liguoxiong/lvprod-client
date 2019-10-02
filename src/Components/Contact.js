@@ -36,7 +36,7 @@ class Contact extends React.Component {
         key="Contact"
         className="home-page-wrapper contact-wrapper"
       >
-        <div className="home-page contact">
+        <div className="home-page contact" id="lienhe">
           <Row>
             <div key="title" className="title-wrapper">
               <h1>LIÊN HỆ</h1>

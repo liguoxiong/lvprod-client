@@ -45,7 +45,12 @@ class Banner extends React.PureComponent {
             <div key="content" className="banner1-content">
               {description}
             </div>
-            <Button ghost key="button" className="banner1-button">
+            <Button
+              ghost
+              key="button"
+              className="banner1-button"
+              onClick={this.props.ctaClick}
+            >
               Liên Hệ Đặt Hàng
             </Button>
           </QueueAnim>

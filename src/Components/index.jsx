@@ -70,6 +70,7 @@ export default class Home extends React.Component {
       Info: {},
       constructions: []
     };
+    // this.scrollRef = React.createRef();
   }
 
   componentDidMount() {
@@ -115,6 +116,10 @@ export default class Home extends React.Component {
         })
       );
   }
+  handleScroll = () => {
+    const elm = document.getElementById("lienhe");
+    elm.scrollIntoView({});
+  };
 
   render() {
     const children = [
@@ -132,6 +137,7 @@ export default class Home extends React.Component {
         key="Banner1_0"
         dataSource={this.state.Banner10DataSource}
         isMobile={this.state.isMobile}
+        ctaClick={this.handleScroll}
       />,
       <Content0
         id="Content0_0"
