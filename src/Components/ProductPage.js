@@ -1,189 +1,156 @@
-import React from 'react';
-import './ProductPage.style.less'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+/* eslint no-undef: 0 */
+/* eslint arrow-parens: 0 */
+import React from "react";
+import { enquireScreen } from "enquire-js";
+import axios from "axios";
 
-const { SubMenu } = Menu;
-const { Header, Content, Sider, Footer } = Layout;
-const ProductPage = () => (
-<Layout>
-<Layout>
-    <Header className="header" style={{ position: 'fixed', zIndex: 1, width: '100%', height: '75px' }}>
-      <div className="logo" />
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={['2']}
-        style={{ lineHeight: '64px' }}
+import Nav0 from "./Nav0";
+import Banner1 from "./Banner1";
+import Content0 from "./Service";
+import Content5 from "./Content5";
+import Content3 from "./Content3";
+import Contact from "./Contact";
+import Footer1 from "./Footer1";
+import Team1 from "./Teams1";
+import Video from "./Video";
+import ProductList from './ProductList'
+import "./less/antMotionStyle.less";
+
+let isMobile;
+enquireScreen(b => {
+  isMobile = b;
+});
+
+const { location } = window;
+
+const Content40DataSource = {
+  wrapper: { className: "home-page-wrapper content4-wrapper" },
+  page: { className: "home-page content4" },
+  OverPack: { playScale: 0.3, className: "" },
+  titleWrapper: {
+    className: "title-wrapper",
+    children: [
+      {
+        name: "title",
+        children: (
+          <>
+            <p>Title Video</p>
+          </>
+        ),
+        className: "title-h1"
+      },
+      {
+        name: "content",
+        className: "title-content content4-title-content",
+        children: (
+          <>
+            <p>Description</p>
+          </>
+        )
+      }
+    ]
+  },
+  video: {
+    className: "content4-video",
+    children: {
+      video: "https://www.youtube.com/watch?v=c3WiRVkQ6IM&feature=share",
+      image: "https://zos.alipayobjects.com/rmsportal/HZgzhugQZkqUwBVeNyfz.jpg"
+    }
+  }
+};
+
+export default class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isMobile,
+      show: !location.port,
+      Banner10DataSource: [],
+      Services: [],
+      AllCategory: [],
+      Info: {},
+      constructions: []
+    };
+    // this.scrollRef = React.createRef();
+  }
+
+  componentDidMount() {
+    enquireScreen(b => {
+      this.setState({ isMobile: !!b });
+    });
+    if (location.port) {
+      setTimeout(() => {
+        this.setState({
+          show: true
+        });
+      }, 500);
+    }
+    axios
+      .all([
+        axios.get("/api/services?limit=3"),
+        axios.get("/api/categories"),
+        axios.get("/api/constructions?limit=3"),
+        axios.get("/api/info")
+      ])
+      .then(
+        axios.spread((services, categories, constructions, info) => {
+          console.log("services: ", services.data.data);
+          this.setState({
+            Services: services.data.data
+          });
+          console.log("categories: ", categories.data.data);
+          this.setState({
+            AllCategory: categories.data.data
+          });
+          console.log("constructions: ", constructions.data.data);
+          this.setState({
+            constructions: constructions.data.data
+          });
+          this.setState({
+            Info: info.data.data[0]
+          });
+        })
+      );
+  }
+
+  render() {
+    const children = [
+      <Nav0
+        id="Nav0_0"
+        key="Nav0_0"
+        dataSource={{
+          category: this.state.AllCategory,
+          logo: this.state.Info.logo
+        }}
+        isMobile={this.state.isMobile}
+      />,
+      <ProductList
+        id="productList"
+        key="Content5_0"
+        dataSource={this.state.AllCategory}
+        isMobile={this.state.isMobile}
+      />,
+     
+      <Footer1
+        id="Footer1_0"
+        key="Footer1_0"
+        dataSource={{
+          info: this.state.Info,
+          category: this.state.AllCategory,
+          services: this.state.Services
+        }}
+        isMobile={this.state.isMobile}
+      />
+    ];
+    return (
+      <div
+        className="templates-wrapper"
+        ref={d => {
+          this.dom = d;
+        }}
       >
-        <Menu.Item key="1">nav 1</Menu.Item>
-        <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item>
-      </Menu>
-    </Header>
-    <Layout>
-      <Sider width={200} style={{ background: '#fff', overflow: 'auto',
-        height: 'calc(100vh - 75px)',
-        position: 'fixed',
-        left: 0, top: '75px' }}>
-        <Menu
-          mode="inline"
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          style={{ height: '100%', borderRight: 0 }}
-        >
-          <SubMenu
-            key="sub1"
-            title={
-              <span>
-                <Icon type="user" />
-                subnav 1
-              </span>
-            }
-          >
-            <Menu.Item key="1">option1</Menu.Item>
-            <Menu.Item key="2">option2</Menu.Item>
-            <Menu.Item key="3">option3</Menu.Item>
-            <Menu.Item key="4">option4</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub2"
-            title={
-              <span>
-                <Icon type="laptop" />
-                subnav 2
-              </span>
-            }
-          >
-            <Menu.Item key="5">option5</Menu.Item>
-            <Menu.Item key="6">option6</Menu.Item>
-            <Menu.Item key="7">option7</Menu.Item>
-            <Menu.Item key="8">option8</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub3"
-            title={
-              <span>
-                <Icon type="notification" />
-                subnav 3
-              </span>
-            }
-          >
-            <Menu.Item key="9">option9</Menu.Item>
-            <Menu.Item key="10">option10</Menu.Item>
-            <Menu.Item key="11">option11</Menu.Item>
-            <Menu.Item key="12">option12</Menu.Item>
-          </SubMenu>
-        </Menu>
-      </Sider>
-      <Layout style={{ padding: '0 24px 24px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-        <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
-          ...
-          <br />
-          Really
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          long
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          ...
-          <br />
-          content
-        </div>
-      </Content>
-      </Layout>
-    </Layout>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-    </Layout>
-    </Layout>
-)
-export default ProductPage;
+        {this.state.show && children}
+      </div>
+    );
+  }
+}

@@ -1,5 +1,21 @@
+@navbar-height: 70px;
 #components-layout-demo-fixed-sider .logo {
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
+}
+.header {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: @navbar-height;
+}
+
+.sidebar {
+  background: #fff;
+  overflow: auto;
+  height: calc(100vh - 75px);
+  position: fixed;
+  left: 0;
+  top: @navbar-height;
 }
