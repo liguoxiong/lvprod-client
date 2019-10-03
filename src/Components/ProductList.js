@@ -3,6 +3,7 @@ import { Row, Col, Button, Modal } from "antd";
 import { TweenOneGroup } from "rc-tween-one";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
 import { getChildrenToRender } from "./utils";
+import ProductDetail from "./ProductDetail";
 import axios from "axios";
 
 class Content5 extends React.Component {
@@ -10,6 +11,7 @@ class Content5 extends React.Component {
     Products: [],
     loading: false,
     visible: false,
+    product: {}
   };
   componentDidMount() {
     axios.all([axios.get("/api/products")]).then(
@@ -22,10 +24,13 @@ class Content5 extends React.Component {
     );
   }
 
-  showModal = (id) => {
-    console.log(id);
-    this.setState({
-      visible: true,
+  showModal = id => {
+    axios.get(`/api/products/${id}`).then(res => {
+      console.log("product", res.data.data);
+      this.setState({
+        product: res.data.data,
+        visible: true
+      });
     });
   };
   handleOk = () => {
@@ -42,31 +47,37 @@ class Content5 extends React.Component {
     data.map((item, i) => {
       return (
         <Col key={i.toString()} className="block" md={8} xs={24}>
-          {/* <div className="productList-block-content">
-            <span>
-              <img
-                src={item.image[0].thumbUrl || item.image[0].url}
-                height="100%"
-                alt="img"
-              />
-            </span>
-            <p>{item.name}</p>
-          </div> */}
-          <div className="bg-img1 size-a-5 how1 pos-relative" style={{backgroundImage: `url(${item.image[0].url || item.image[0].thumbUrl})`}}>
-								{/* <a href="blog-detail-01.html" className="dis-block how1-child1 trans-03"></a> */}
+          <div
+            className="bg-img1 size-a-5 how1 pos-relative"
+            style={{
+              backgroundImage: `url(${item.image[0].url ||
+                item.image[0].thumbUrl})`
+            }}
+          >
+            <div
+              onClick={() => this.showModal(item._id)}
+              className="dis-block how1-child1 trans-03 dis-cur"
+            ></div>
 
-								<div className="flex-col-e-s s-full p-rl-25 p-tb-20">
-									<Button ghost onClick={() => this.showModal(item._id)} className="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0  trans-03 p-rl-5 p-t-2">
-										Xem thêm
-									</Button>
+            <div className="flex-col-e-s s-full p-rl-25 p-tb-20">
+              {/* <Button
+                ghost
+                onClick={() => this.showModal(item._id)}
+                className="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0  trans-03 p-rl-5 p-t-2"
+              >
+                Xem thêm
+              </Button> */}
 
-									<h3 className="how1-child2 m-t-14">
-										<a href="blog-detail-01.html" className="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-											{item.name}
-										</a>
-									</h3>
-								</div>
-							</div>
+              <h3 className="how1-child2 m-t-14">
+                <div
+                  onClick={() => this.showModal(item._id)}
+                  className="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03 dis-cur"
+                >
+                  {item.name}
+                </div>
+              </h3>
+            </div>
+          </div>
         </Col>
       );
     });
@@ -86,13 +97,10 @@ class Content5 extends React.Component {
     const { dataSource } = props;
     delete props.dataSource;
     delete props.isMobile;
-    const { visible, Products } = this.state;
+    const { visible, Products, product } = this.state;
     const childrenToRender = this.getChildrenToRender(Products);
     return (
-      <div
-        {...props}
-        className="home-page-wrapper productList-wrapper"
-      >
+      <div {...props} className="home-page-wrapper productList-wrapper">
         <div className="home-page productList">
           <div key="title" className="title-wrapper">
             <h1 className="title-h1">SẢN PHẨM</h1>
@@ -138,16 +146,14 @@ class Content5 extends React.Component {
         </div>
         <Modal
           visible={visible}
-          title="Title"
+          title={null}
+          width="90vw"
+          centered
           onOk={this.handleOk}
           onCancel={this.handleCancel}
           footer={null}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <ProductDetail product={product} />
         </Modal>
       </div>
     );
