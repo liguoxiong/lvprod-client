@@ -40,7 +40,7 @@ class Content5 extends React.Component {
   handleSelectCategory = id => {
     let query = "isShow=true&limit=8";
     if (id !== "") {
-      query = `category=${id}&isShow=true&limit=8`;
+      query = `category=${id}&limit=8`;
     }
     axios
       .get(`/api/products?${query}`)
