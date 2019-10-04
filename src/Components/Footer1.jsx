@@ -89,7 +89,7 @@ class Footer extends React.Component {
             children: [
               {
                 name: "content0",
-                children: "Dịch vụ hàng đầu tại Việt Nam"
+                children: `Hotline: ${info.phone}`
               }
             ]
           }
@@ -146,7 +146,7 @@ class Footer extends React.Component {
               <h2>
                 <img src={info.logo} width="100%" alt="img" />
               </h2>
-              <div className="slogan">Dịch vụ hàng đầu tại Việt Nam</div>
+              <div className="slogan">Hotline: {info.phone}</div>
             </Col>
             <Col
               name="category"
@@ -177,7 +177,7 @@ class Footer extends React.Component {
               <div>
                 {services.map(item => (
                   <div key={item._id}>
-                    <a href="#">{item.title}</a>
+                    <Link to='/services'>{item.title}</Link>
                   </div>
                 ))}
               </div>

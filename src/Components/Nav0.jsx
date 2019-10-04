@@ -40,16 +40,20 @@ class Header extends React.Component {
       // logo: "https://os.alipayobjects.com/rmsportal/mlcYmsRilwraoAe.svg",
       Menu: [
         {
+          children: "Trang chủ",
+          linkTo: "/"
+        },
+        {
           children: "Sản phẩm",
           subItem: this.state.subItem
         },
         {
           children: "Dịch vụ",
-          // linkTo: "/services"
+          linkTo: "/services"
         },
         {
-          children: "Giới thiệu",
-          // linkTo: "/about"
+          children: "Dự án",
+          linkTo: "/constructions"
         },
         {
           children: "Liên hệ",

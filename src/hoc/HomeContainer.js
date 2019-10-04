@@ -3,6 +3,7 @@
 import React from "react";
 import { enquireScreen } from "enquire-js";
 import axios from "axios";
+import { BackTop, Icon } from 'antd';
 
 import Header from "../Components/Nav0";
 import Footer1 from "../Components/Footer1";
@@ -76,6 +77,9 @@ export default class HomeContainer extends React.Component {
         }}
         isMobile={this.state.isMobile}
       />
+      <BackTop>
+        <div className="ant-back-top-inner"><span style={{fontSize: '25px', color: '#fff', padding: '5px', borderRadius: '3px', background: 'rgba(34, 97, 163, 1)', width:'35px', height:'35px'}}><Icon type="up" /></span></div>
+    </BackTop>
       {this.props.children}
       <Footer1
         id="Footer1_0"

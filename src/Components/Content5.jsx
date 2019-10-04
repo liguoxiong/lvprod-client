@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Button } from "antd";
+import { Row, Col, Button, Modal, Carousel, Descriptions } from "antd";
 import { TweenOneGroup } from "rc-tween-one";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
 import { getChildrenToRender } from "./utils";
@@ -7,7 +7,9 @@ import axios from "axios";
 
 class Content5 extends React.Component {
   state = {
-    Products: []
+    Products: [],
+    product: {},
+    visible: false
   };
   componentDidMount() {
     axios.all([axios.get("/api/products?isShow=true&limit=8")]).then(
@@ -23,7 +25,7 @@ class Content5 extends React.Component {
     data.map((item, i) => {
       return (
         <Col key={i.toString()} className="block" md={6} xs={24}>
-          <div className="content5-block-content">
+          <div className="content5-block-content" style={{cursor: 'pointer'}} onClick={() => this.showModal(item._id)}>
             <span>
               <img
                 src={item.image[0].thumbUrl || item.image[0].url}
@@ -47,12 +49,38 @@ class Content5 extends React.Component {
       .then(res => this.setState({ catActive: id, Products: res.data.data }));
   };
 
+  showModal = id => {
+    axios.get(`/api/products/${id}`).then(res => {
+      console.log("product", res.data.data);
+      this.setState({
+        product: res.data.data,
+        visible: true
+      });
+    });
+  };
+
+  handleCancel = () => {
+    this.setState({ visible: false });
+  };
+
   render() {
     const { ...props } = this.props;
     const { dataSource } = props;
     delete props.dataSource;
     delete props.isMobile;
-    const childrenToRender = this.getChildrenToRender(this.state.Products);
+    const { visible, Products, product,  } = this.state;
+    const {
+      category,
+      image,
+      name,
+      origin,
+      description,
+      dilivery_time,
+      model_number,
+      warranty_time,
+      documentation
+    } = product;
+    const childrenToRender = this.getChildrenToRender(Products);
     return (
       <div
         id="Content5_0"
@@ -102,6 +130,52 @@ class Content5 extends React.Component {
             </TweenOneGroup>
           </OverPack>
         </div>
+        <Modal
+          visible={visible}
+          title={null}
+          width="90vw"
+          centered
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+          footer={null}
+        >
+          <Row gutter={16}>
+      <Col xs={24} md={10}>
+        <Carousel autoplay effect="fade">
+          {!!image &&
+            image.map(item => (
+              <div key={item.uid}>
+                <img width="100%" src={item.url} alt={item.name}></img>
+              </div>
+            ))}
+        </Carousel>
+      </Col>
+      <Col xs={24} md={14}>
+        <Descriptions title="Chi Tiết Sản Phẩm" bordered
+        column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}>
+          <Descriptions.Item label="Tên Sản Phẩm">{name}</Descriptions.Item>
+          <Descriptions.Item label="Mã Sản Phẩm">
+            {model_number}
+          </Descriptions.Item>
+          <Descriptions.Item label="Loại Sản Phẩm">
+            {!!category && category.title}
+          </Descriptions.Item>
+          <Descriptions.Item label="Mô tả">{description}</Descriptions.Item>
+          <Descriptions.Item label="Thông số kỹ thuật">
+            {documentation}
+          </Descriptions.Item>
+          <Descriptions.Item label="Xuất xứ">{origin}</Descriptions.Item>
+          <Descriptions.Item label="Thời gian giao hàng">
+            {dilivery_time}
+          </Descriptions.Item>
+          <Descriptions.Item label="Bảo hành">
+            {warranty_time}
+          </Descriptions.Item>
+        </Descriptions>
+      </Col>
+    </Row>
+          {/* <ProductDetail product={product} /> */}
+        </Modal>
       </div>
     );
   }
