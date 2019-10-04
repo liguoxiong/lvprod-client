@@ -50,8 +50,8 @@ class ConstructionList extends React.Component {
                     <Carousel autoplay>
           {!!item.image &&
             item.image.map($item => (
-              <div key={$item.uid}>
-                <img width="100%" src={$item.url} alt={$item.name}></img>
+              <div key={$item.uid} className="img-bg">
+                <img width="100%" height="100%" src={$item.url} alt={$item.name}></img>
               </div>
             ))}
         </Carousel>
