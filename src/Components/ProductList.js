@@ -26,7 +26,7 @@ class Content5 extends React.Component {
 
   loadData = () => {
     const catId = this.props.category;
-    axios.all([axios.get(`/api/products?category=${catId}`), axios.get(`/api/categories/${catId}`),]).then(
+    axios.all([axios.get(`/api/products?category=${catId}&limit=100`), axios.get(`/api/categories/${catId}`),]).then(
       axios.spread((products, category) => {
         this.setState({
           Products: products.data.data,
