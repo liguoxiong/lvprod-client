@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Button, Modal } from "antd";
+import { Row, Col, Button, Modal, Carousel, Descriptions } from "antd";
 import { TweenOneGroup } from "rc-tween-one";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
 import { getChildrenToRender } from "./utils";
@@ -11,14 +11,26 @@ class Content5 extends React.Component {
     Products: [],
     loading: false,
     visible: false,
-    product: {}
+    product: {},
+    thisCategory: {},
   };
   componentDidMount() {
-    axios.all([axios.get("/api/products")]).then(
-      axios.spread(products => {
+    this.loadData()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.category !== prevProps.category) {
+      this.loadData();
+    }
+  }
+
+  loadData = () => {
+    const catId = this.props.category;
+    axios.all([axios.get(`/api/products?category=${catId}`), axios.get(`/api/categories/${catId}`),]).then(
+      axios.spread((products, category) => {
         this.setState({
-          catActive: "",
-          Products: products.data.data
+          Products: products.data.data,
+          thisCategory: category.data.data
         });
       })
     );
@@ -82,33 +94,45 @@ class Content5 extends React.Component {
       );
     });
 
-  handleSelectCategory = id => {
-    let query = "";
-    if (id !== "") {
-      query = `category=${id}`;
-    }
-    axios
-      .get(`/api/products?${query}`)
-      .then(res => this.setState({ catActive: id, Products: res.data.data }));
-  };
+  // handleSelectCategory = id => {
+  //   let query = "";
+  //   if (id !== "") {
+  //     query = `category=${id}`;
+  //   }
+  //   axios
+  //     .get(`/api/products?${query}`)
+  //     .then(res => this.setState({ catActive: id, Products: res.data.data }));
+  // };
 
   render() {
     const { ...props } = this.props;
     const { dataSource } = props;
     delete props.dataSource;
     delete props.isMobile;
-    const { visible, Products, product } = this.state;
+    const { visible, Products, product, thisCategory } = this.state;
     const childrenToRender = this.getChildrenToRender(Products);
+    const {
+      category,
+      image,
+      name,
+      origin,
+      description,
+      dilivery_time,
+      model_number,
+      warranty_time,
+      documentation
+    } = product;
     return (
       <div {...props} className="home-page-wrapper productList-wrapper">
         <div className="home-page productList">
           <div key="title" className="title-wrapper">
-            <h1 className="title-h1">SẢN PHẨM</h1>
-            <div className="title-content">
+            <h2 className="title-h1">Sản phẩm</h2>
+            <h1 className="title-h1">{thisCategory.title}</h1>
+            {/* <div className="title-content">
               Chúng tôi tự hào cung cấp các sản phẩm thế mạnh
-            </div>
+            </div> */}
           </div>
-          <div key="categoryList" className="category-wrapper">
+          {/* <div key="categoryList" className="category-wrapper">
             <Button
               type={this.state.catActive === "" ? "primary" : null}
               onClick={() => this.handleSelectCategory("")}
@@ -125,7 +149,7 @@ class Content5 extends React.Component {
                   {item.title}
                 </Button>
               ))}
-          </div>
+          </div> */}
           <OverPack className="content-template" playScale={0.3}>
             <TweenOneGroup
               component={Row}
@@ -153,7 +177,42 @@ class Content5 extends React.Component {
           onCancel={this.handleCancel}
           footer={null}
         >
-          <ProductDetail product={product} />
+          <Row gutter={16}>
+      <Col xs={24} md={10}>
+        <Carousel autoplay effect="fade">
+          {!!image &&
+            image.map(item => (
+              <div key={item.uid}>
+                <img width="100%" src={item.url} alt={item.name}></img>
+              </div>
+            ))}
+        </Carousel>
+      </Col>
+      <Col xs={24} md={14}>
+        <Descriptions title="Chi Tiết Sản Phẩm" bordered
+        column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}>
+          <Descriptions.Item label="Tên Sản Phẩm">{name}</Descriptions.Item>
+          <Descriptions.Item label="Mã Sản Phẩm">
+            {model_number}
+          </Descriptions.Item>
+          <Descriptions.Item label="Loại Sản Phẩm">
+            {!!category && category.title}
+          </Descriptions.Item>
+          <Descriptions.Item label="Mô tả">{description}</Descriptions.Item>
+          <Descriptions.Item label="Thông số kỹ thuật">
+            {documentation}
+          </Descriptions.Item>
+          <Descriptions.Item label="Xuất xứ">{origin}</Descriptions.Item>
+          <Descriptions.Item label="Thời gian giao hàng">
+            {dilivery_time}
+          </Descriptions.Item>
+          <Descriptions.Item label="Bảo hành">
+            {warranty_time}
+          </Descriptions.Item>
+        </Descriptions>
+      </Col>
+    </Row>
+          {/* <ProductDetail product={product} /> */}
         </Modal>
       </div>
     );

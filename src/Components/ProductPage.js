@@ -114,31 +114,12 @@ export default class Home extends React.Component {
   }
 
   render() {
+    const catId = this.props.match.params.id;
     const children = [
-      <Nav0
-        id="Nav0_0"
-        key="Nav0_0"
-        dataSource={{
-          category: this.state.AllCategory,
-          logo: this.state.Info.logo
-        }}
-        isMobile={this.state.isMobile}
-      />,
       <ProductList
         id="productList"
         key="Content5_0"
-        dataSource={this.state.AllCategory}
-        isMobile={this.state.isMobile}
-      />,
-     
-      <Footer1
-        id="Footer1_0"
-        key="Footer1_0"
-        dataSource={{
-          info: this.state.Info,
-          category: this.state.AllCategory,
-          services: this.state.Services
-        }}
+        category={catId}
         isMobile={this.state.isMobile}
       />
     ];

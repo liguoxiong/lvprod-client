@@ -8,11 +8,9 @@ import Nav0 from "./Nav0";
 import Banner1 from "./Banner1";
 import Content0 from "./Service";
 import Content5 from "./Content5";
-import Content3 from "./Content3";
 import Contact from "./Contact";
 import Footer1 from "./Footer1";
 import Team1 from "./Teams1";
-import Video from "./Video";
 import "./less/antMotionStyle.less";
 
 let isMobile;
@@ -21,42 +19,6 @@ enquireScreen(b => {
 });
 
 const { location } = window;
-
-const Content40DataSource = {
-  wrapper: { className: "home-page-wrapper content4-wrapper" },
-  page: { className: "home-page content4" },
-  OverPack: { playScale: 0.3, className: "" },
-  titleWrapper: {
-    className: "title-wrapper",
-    children: [
-      {
-        name: "title",
-        children: (
-          <>
-            <p>Title Video</p>
-          </>
-        ),
-        className: "title-h1"
-      },
-      {
-        name: "content",
-        className: "title-content content4-title-content",
-        children: (
-          <>
-            <p>Description</p>
-          </>
-        )
-      }
-    ]
-  },
-  video: {
-    className: "content4-video",
-    children: {
-      video: "https://www.youtube.com/watch?v=c3WiRVkQ6IM&feature=share",
-      image: "https://zos.alipayobjects.com/rmsportal/HZgzhugQZkqUwBVeNyfz.jpg"
-    }
-  }
-};
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -70,7 +32,6 @@ export default class Home extends React.Component {
       Info: {},
       constructions: []
     };
-    // this.scrollRef = React.createRef();
   }
 
   componentDidMount() {
@@ -123,15 +84,6 @@ export default class Home extends React.Component {
 
   render() {
     const children = [
-      <Nav0
-        id="Nav0_0"
-        key="Nav0_0"
-        dataSource={{
-          category: this.state.AllCategory,
-          logo: this.state.Info.logo
-        }}
-        isMobile={this.state.isMobile}
-      />,
       <Banner1
         id="Banner1_0"
         key="Banner1_0"
@@ -174,16 +126,6 @@ export default class Home extends React.Component {
         id="Contact"
         key="Contact"
         dataSource={this.state.Info}
-        isMobile={this.state.isMobile}
-      />,
-      <Footer1
-        id="Footer1_0"
-        key="Footer1_0"
-        dataSource={{
-          info: this.state.Info,
-          category: this.state.AllCategory,
-          services: this.state.Services
-        }}
         isMobile={this.state.isMobile}
       />
     ];

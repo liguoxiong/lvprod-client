@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import TweenOne from "rc-tween-one";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
 import QueueAnim from "rc-queue-anim";
@@ -34,6 +35,14 @@ class Footer extends React.Component {
       href: "#",
       children: item.title
     }));
+
+    scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
 
   getLiChildren = data =>
     data.map((item, i) => {
@@ -151,7 +160,7 @@ class Footer extends React.Component {
               <div>
                 {category.map(item => (
                   <div key={item._id}>
-                    <a href="#">{item.title}</a>
+                    <Link to={`/product/${item._id}`} onClick={this.scrollToTop}>{item.title}</Link>
                   </div>
                 ))}
               </div>
@@ -182,12 +191,15 @@ class Footer extends React.Component {
               content={null}
             >
               <h2>Liên kết</h2>
+              <div style={{width: '320px'}}>
               <div
                 className="fb-page"
-                data-tabs="timeline,messages"
+                // data-tabs="timeline,messages"
                 data-href="https://www.facebook.com/DaiThienLocDecor"
-                data-width="380"
+                data-width="360"
+                data-height="200"
                 data-hide-cover="false"
+                data-show-facepile="true"
               >
                 <blockquote
                   cite="https://www.facebook.com/DaiThienLocDecor"
@@ -198,11 +210,12 @@ class Footer extends React.Component {
                   </a>
                 </blockquote>
               </div>
-              <div>
+              </div>
+              <div style={{marginTop: '10px'}}>
                 <iframe
                   title="Youtube"
-                  width="160"
-                  height="90"
+                  width="320"
+                  height="180"
                   src="https://www.youtube.com/embed/hsGXrA7OyuY?playlist=hsGXrA7OyuY&loop=1"
                 ></iframe>
               </div>

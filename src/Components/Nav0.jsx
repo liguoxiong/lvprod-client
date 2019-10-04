@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import TweenOne from "rc-tween-one";
 import { Menu } from "antd";
 
@@ -28,6 +29,10 @@ class Header extends React.Component {
     });
   };
 
+  goToHomePage = () => {
+    window.location = '/';
+  }
+
   render() {
     console.log(this.state.subItem)
     const menu = {
@@ -39,13 +44,16 @@ class Header extends React.Component {
           subItem: this.state.subItem
         },
         {
-          children: "Dịch vụ"
+          children: "Dịch vụ",
+          // linkTo: "/services"
         },
         {
-          children: "Giới thiệu"
+          children: "Giới thiệu",
+          // linkTo: "/about"
         },
         {
-          children: "Liên hệ"
+          children: "Liên hệ",
+          linkTo: "/contact"
         }
       ]
     };
@@ -60,16 +68,16 @@ class Header extends React.Component {
             key={i.toString()}
             className="header0-item"
             title={
-              <div href="#" className="header0-item-block">
+              <Link to={item.linkTo || '#'} className="header0-item-block">
                 <div name="text">{children}</div>
-              </div>
+              </Link>
             }
             popupClassName="header0-item-child"
           >
             {subItem.map(($item, ii) => {
               return (
-                <Item key={ii.toString()} className="item-sub">
-                  <div className="item-sub-item">
+                <Item key={$item._id.toString()} className="item-sub">
+                  <Link to={`/product/${$item._id}`} className="item-sub-item" >
                     <div className="item-image">
                       <img src={$item.image} alt={$item.title}></img>
                     </div>
@@ -79,7 +87,7 @@ class Header extends React.Component {
                     <div name="content" className="item-content">
                       {$item.description}
                     </div>
-                  </div>
+                  </Link>
                 </Item>
               );
             })}
@@ -88,9 +96,9 @@ class Header extends React.Component {
       }
       return (
         <Item key={i.toString()} className="header0-item">
-          <a href="#" className="header0-item-block">
+          <Link to={item.linkTo || '#'} className="header0-item-block">
             <div name="text">{children}</div>
-          </a>
+          </Link>
         </Item>
       );
     });
@@ -105,6 +113,8 @@ class Header extends React.Component {
           <TweenOne
             animation={{ x: -30, type: "from", ease: "easeOutQuad" }}
             className="header0-logo"
+            onClick={this.goToHomePage}
+            style={{cursor: 'pointer'}}
           >
             <img height="34px" src={menu.logo} alt="img" />
           </TweenOne>
