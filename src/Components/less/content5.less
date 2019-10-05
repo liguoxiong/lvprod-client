@@ -26,7 +26,7 @@
           display: block;
           background: #fff;
           border-radius: 4px;
-          padding: 10px;
+          // padding: 10px;
           text-align: center;
           position: relative;
           overflow: hidden;
@@ -35,14 +35,16 @@
           transition: box-shadow 0.3s @ease-out, transform 0.3s @ease-out;
           & > span {
             width: 100%;
-            height: 160px;
+            height: calc(20vw * 3 / 4);
             display: block;
             background: @line-color;
-            padding: 5%;
+            // padding: 5%;
           }
           & p {
             width: 100%;
             line-height: 30px;
+            background-color: @template-bg-color;
+            color: #fff;
           }
           &:hover {
             & p {
@@ -57,20 +59,22 @@
 
 @media screen and (max-width: 767px) {
   .@{content5}-wrapper {
-    height: 2000px;
+    // height: 2000px;
     overflow: hidden;
     .@{content5} {
-      ul {
-        li {
-          display: block;
-          width: 100%;
-          padding: 2%;
-          span {
-            height: 168px;
-          }
-          p {
-            position: relative;
-            bottom: 0;
+      &-img-wrapper {
+        .block {
+          .content5-block-content {
+            display: block;
+            width: 100%;
+            padding: 2%;
+            & > span {
+              height: calc(90vw * 3 / 4);
+            }
+            & p {
+              position: relative;
+              bottom: 0;
+            }
           }
         }
       }

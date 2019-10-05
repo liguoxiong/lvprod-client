@@ -86,47 +86,6 @@ class Contact extends React.Component {
                         {dataSource.phone}
                       </p>
                     </Row>
-                    <Row className="icon-wrapper">
-                      <a className="icons" href={dataSource.facebook}>
-                        <Facebook />
-                      </a>
-                      <a
-                        className="icons"
-                        href={
-                          dataSource.messenger
-                            ? dataSource.messenger.replace(
-                                "www.facebook.com",
-                                "m.me"
-                              )
-                            : ""
-                        }
-                      >
-                        <Messenger />
-                      </a>
-                      <div className="icons">
-                        <Skype />
-                      </div>
-                      <div
-                        className="icons"
-                        href={
-                          dataSource.phone
-                            ? `tel:${dataSource.phone.replace(/\s/g, "")}`
-                            : ""
-                        }
-                      >
-                        <Viber />
-                      </div>
-                      <a
-                        className="icons"
-                        href={
-                          dataSource.zalo
-                            ? `http://zalo.me/${dataSource.zalo}`
-                            : ""
-                        }
-                      >
-                        <Zalo />
-                      </a>
-                    </Row>
                   </TweenOneGroup>
                 </OverPack>
               </div>

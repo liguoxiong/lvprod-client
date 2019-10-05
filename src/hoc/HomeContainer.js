@@ -3,8 +3,10 @@
 import React from "react";
 import { enquireScreen } from "enquire-js";
 import axios from "axios";
-import { BackTop, Icon } from 'antd';
-
+import { BackTop, Icon, Affix, Row } from "antd";
+import { ReactComponent as Facebook } from "./../assets/icons/facebook.svg";
+import { ReactComponent as Messenger } from "./../assets/icons/messenger.svg";
+import { ReactComponent as Zalo } from "./../assets/icons/zalo.svg";
 import Header from "../Components/Nav0";
 import Footer1 from "../Components/Footer1";
 
@@ -25,7 +27,7 @@ export default class HomeContainer extends React.Component {
       show: !location.port,
       Services: [],
       AllCategory: [],
-      Info: {},
+      Info: {}
     };
   }
 
@@ -61,6 +63,7 @@ export default class HomeContainer extends React.Component {
       );
   }
   render() {
+    const { Info, isMobile } = this.state;
     return (
       <div
         className="templates-wrapper"
@@ -69,28 +72,71 @@ export default class HomeContainer extends React.Component {
         // }}
       >
         <Header
-        id="Nav0_0"
-        key="Nav0_0"
-        dataSource={{
-          category: this.state.AllCategory,
-          logo: this.state.Info.logo
-        }}
-        isMobile={this.state.isMobile}
-      />
-      <BackTop>
-        <div className="ant-back-top-inner"><span style={{fontSize: '25px', color: '#fff', padding: '5px', borderRadius: '3px', background: 'rgba(34, 97, 163, 1)', width:'35px', height:'35px'}}><Icon type="up" /></span></div>
-    </BackTop>
-      {this.props.children}
-      <Footer1
-        id="Footer1_0"
-        key="Footer1_0"
-        dataSource={{
-          info: this.state.Info,
-          category: this.state.AllCategory,
-          services: this.state.Services
-        }}
-        isMobile={this.state.isMobile}
-      />
+          id="Nav0_0"
+          key="Nav0_0"
+          dataSource={{
+            category: this.state.AllCategory,
+            logo: this.state.Info.logo
+          }}
+          isMobile={this.state.isMobile}
+        />
+        <BackTop>
+          <div className="ant-back-top-inner">
+            <span
+              style={{
+                fontSize: "25px",
+                color: "#fff",
+                padding: "5px",
+                borderRadius: "3px",
+                background: "#001529",
+                width: "35px",
+                height: "35px"
+              }}
+            >
+              <Icon type="up" />
+            </span>
+          </div>
+        </BackTop>
+        <Affix offsetTop={200}>
+          <Row className="icon-wrapper">
+            <Row>
+              <a className="icons" href={Info.facebook}>
+                <Facebook className="icon-box-shadow" />
+              </a>
+            </Row>
+            <Row>
+              <a
+                className="icons"
+                href={
+                  Info.messenger
+                    ? Info.messenger.replace("www.facebook.com", "m.me")
+                    : ""
+                }
+              >
+                <Messenger className="icon-box-shadow" />
+              </a>
+            </Row>
+            <Row>
+              <a
+                className="icons"
+                href={Info.zalo ? `http://zalo.me/${Info.zalo}` : ""}
+              >
+                <Zalo className="icon-box-shadow" />
+              </a>
+            </Row>
+          </Row>
+        </Affix>
+        {this.props.children}
+        <Footer1
+          id="Footer1_0"
+          key="Footer1_0"
+          dataSource={{
+            info: this.state.Info,
+            category: this.state.AllCategory,
+            services: this.state.Services
+          }}
+          isMobile={this.state.isMobile}
+        />
       </div>
     );
   }

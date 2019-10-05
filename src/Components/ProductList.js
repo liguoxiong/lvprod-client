@@ -12,29 +12,36 @@ class Content5 extends React.Component {
     loading: false,
     visible: false,
     product: {},
-    thisCategory: {},
+    thisCategory: {}
   };
   componentDidMount() {
-    this.loadData()
+    this.loadData();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.category !== prevProps.category) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
       this.loadData();
     }
   }
 
   loadData = () => {
     const catId = this.props.category;
-    axios.all([axios.get(`/api/products?category=${catId}&limit=100`), axios.get(`/api/categories/${catId}`),]).then(
-      axios.spread((products, category) => {
-        this.setState({
-          Products: products.data.data,
-          thisCategory: category.data.data
-        });
-      })
-    );
-  }
+    axios
+      .all([
+        axios.get(
+          `/api/products?category=${this.props.match.params.id}&limit=100`
+        ),
+        axios.get(`/api/categories/${this.props.match.params.id}`)
+      ])
+      .then(
+        axios.spread((products, category) => {
+          this.setState({
+            Products: products.data.data,
+            thisCategory: category.data.data
+          });
+        })
+      );
+  };
 
   showModal = id => {
     axios.get(`/api/products/${id}`).then(res => {
@@ -178,40 +185,47 @@ class Content5 extends React.Component {
           footer={null}
         >
           <Row gutter={16}>
-      <Col xs={24} md={10}>
-        <Carousel autoplay effect="fade">
-          {!!image &&
-            image.map(item => (
-              <div key={item.uid}>
-                <img width="100%" src={item.url} alt={item.name}></img>
-              </div>
-            ))}
-        </Carousel>
-      </Col>
-      <Col xs={24} md={14}>
-        <Descriptions title="Chi Tiết Sản Phẩm" bordered
-        column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}>
-          <Descriptions.Item label="Tên Sản Phẩm">{name}</Descriptions.Item>
-          <Descriptions.Item label="Mã Sản Phẩm">
-            {model_number}
-          </Descriptions.Item>
-          <Descriptions.Item label="Loại Sản Phẩm">
-            {!!category && category.title}
-          </Descriptions.Item>
-          <Descriptions.Item label="Mô tả">{description}</Descriptions.Item>
-          <Descriptions.Item label="Thông số kỹ thuật">
-            {documentation}
-          </Descriptions.Item>
-          <Descriptions.Item label="Xuất xứ">{origin}</Descriptions.Item>
-          <Descriptions.Item label="Thời gian giao hàng">
-            {dilivery_time}
-          </Descriptions.Item>
-          <Descriptions.Item label="Bảo hành">
-            {warranty_time}
-          </Descriptions.Item>
-        </Descriptions>
-      </Col>
-    </Row>
+            <Col xs={24} md={10}>
+              <Carousel autoplay effect="fade">
+                {!!image &&
+                  image.map(item => (
+                    <div key={item.uid}>
+                      <img width="100%" src={item.url} alt={item.name}></img>
+                    </div>
+                  ))}
+              </Carousel>
+            </Col>
+            <Col xs={24} md={14}>
+              <Descriptions
+                title="Chi Tiết Sản Phẩm"
+                bordered
+                column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
+              >
+                <Descriptions.Item label="Tên Sản Phẩm">
+                  {name}
+                </Descriptions.Item>
+                <Descriptions.Item label="Mã Sản Phẩm">
+                  {model_number}
+                </Descriptions.Item>
+                <Descriptions.Item label="Loại Sản Phẩm">
+                  {!!category && category.title}
+                </Descriptions.Item>
+                <Descriptions.Item label="Mô tả">
+                  {description}
+                </Descriptions.Item>
+                <Descriptions.Item label="Thông số kỹ thuật">
+                  {documentation}
+                </Descriptions.Item>
+                <Descriptions.Item label="Xuất xứ">{origin}</Descriptions.Item>
+                <Descriptions.Item label="Thời gian giao hàng">
+                  {dilivery_time}
+                </Descriptions.Item>
+                <Descriptions.Item label="Bảo hành">
+                  {warranty_time}
+                </Descriptions.Item>
+              </Descriptions>
+            </Col>
+          </Row>
           {/* <ProductDetail product={product} /> */}
         </Modal>
       </div>

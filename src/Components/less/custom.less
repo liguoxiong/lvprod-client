@@ -15,7 +15,7 @@
 @template-text-color-light: #fff;
 @template-footer-text-color: #999;
 
-@animate-duration: .45s;
+@animate-duration: 0.45s;
 
 /* 详细页图片或框框的样式;
 */
@@ -27,9 +27,59 @@
   border-radius: 6px;
   border: 1px solid @line-color;
   transform: translateY(0);
-  transition: transform .3s @ease-out, box-shadow .3s @ease-out;
+  transition: transform 0.3s @ease-out, box-shadow 0.3s @ease-out;
   &:hover {
     .page-shadow();
     transform: translateY(-5px);
+  }
+}
+.buttonIsActive {
+  background-color: @template-bg-color;
+  color: #fff;
+}
+
+.title-wrapper {
+  h1:after {
+    content: ""; /* This is necessary for the pseudo element to work. */
+    display: block; /* This will put the pseudo element on its own line. */
+    margin: 0 auto; /* This will center the border. */
+    width: 120px; /* Change this to whatever width you want. */
+    padding-top: 5px; /* This creates some space between the element and the border. */
+    border-bottom: 1px solid @template-bg-color; /* This creates the border. Replace black with whatever color you want. */
+  }
+}
+.icon-wrapper {
+  position: absolute;
+  right: 1vw;
+  // text-align: center;
+  .icons {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin: 10px;
+  }
+  .icon-box-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: transparent;
+    border-radius: 50%;
+  }
+}
+
+.title-content {
+  margin-top: 5px;
+  font-size: 18px;
+}
+.product-linkToDetail {
+  cursor: pointer;
+  .page-pro();
+}
+@media screen and (max-width: 767px) {
+  .icon-wrapper {
+    .icons {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      margin: 5px;
+    }
   }
 }

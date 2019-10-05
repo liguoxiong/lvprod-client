@@ -1,8 +1,8 @@
-import React from 'react';
-import QueueAnim from 'rc-queue-anim';
-import { Row, Col } from 'antd';
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
-import { getChildrenToRender, isImg } from './utils';
+import React from "react";
+import QueueAnim from "rc-queue-anim";
+import { Row, Col } from "antd";
+import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
+import { getChildrenToRender, isImg } from "./utils";
 
 class Teams1 extends React.PureComponent {
   // getBlockChildren = (data) =>
@@ -24,34 +24,48 @@ class Teams1 extends React.PureComponent {
     delete props.isMobile;
     // const listChildren = this.getBlockChildren(dataSource.block.children);
     return (
-      <div {...props} className='home-page-wrapper teams1-wrapper'>
-        <div className='home-page teams1'>
-          <div className='title-wrapper'>
+      <div {...props} className="home-page-wrapper content0-wrapper">
+        <div className="home-page content0">
+          <div className="title-wrapper">
             <h1>DỰ ÁN TIÊU BIỂU</h1>
             <div className="title-content">Các công trình đã thi công</div>
           </div>
-          <OverPack playScale={0.3} className=''>
+          <OverPack playScale={0.3} className="">
             <QueueAnim
               type="bottom"
               key="block"
               leaveReverse
-              className='block-wrapper'
+              className="content0-block-wrapper"
               component={Row}
             >
               {dataSource.map((item, i) => {
                 return (
                   <Col
                     key={i.toString()}
-                    className="block"
+                    className="content0-block"
                     md={8}
                     xs={24}
                   >
-                    <div className="block" >
-                      <div className="teams1-image">
-                        <img src={item.image[0].url} alt={item.title} />
+                    <div className="content0-block-item">
+                      <div
+                        className="container-border"
+                        style={{ height: "65vh" }}
+                      >
+                        <div className="content0-block-icon">
+                          <img
+                            src={item.image[0].url}
+                            alt={item.title}
+                            height="100%"
+                            width="100%"
+                          />
+                        </div>
+                        <h2 className="content0-block-title">
+                          <span>{item.title}</span>
+                        </h2>
+                        <div className="text-container">
+                          <span>{item.description}</span>
+                        </div>
                       </div>
-                      <h1 className="'teams1-title'"><span>{item.title}</span></h1>
-                      <div className="teams1-content"><span>{item.description}</span></div>
                     </div>
                   </Col>
                 );

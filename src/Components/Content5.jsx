@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Row, Col, Button, Modal, Carousel, Descriptions } from "antd";
 import { TweenOneGroup } from "rc-tween-one";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
@@ -25,10 +26,15 @@ class Content5 extends React.Component {
     data.map((item, i) => {
       return (
         <Col key={i.toString()} className="block" md={6} xs={24}>
-          <div className="content5-block-content" style={{cursor: 'pointer'}} onClick={() => this.showModal(item._id)}>
+          <div
+            className="content5-block-content"
+            style={{ cursor: "pointer" }}
+            onClick={() => this.showModal(item._id)}
+          >
             <span>
               <img
                 src={item.image[0].thumbUrl || item.image[0].url}
+                width="100%"
                 height="100%"
                 alt="img"
               />
@@ -62,13 +68,20 @@ class Content5 extends React.Component {
   handleCancel = () => {
     this.setState({ visible: false });
   };
+  scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  };
 
   render() {
     const { ...props } = this.props;
     const { dataSource } = props;
     delete props.dataSource;
     delete props.isMobile;
-    const { visible, Products, product,  } = this.state;
+    const { visible, Products, product } = this.state;
     const {
       category,
       image,
@@ -89,14 +102,16 @@ class Content5 extends React.Component {
       >
         <div className="home-page content5">
           <div key="title" className="title-wrapper">
-            <h1 className="title-h1">SẢN PHẨM</h1>
+            <Link to="/products" onClick={this.scrollToTop}>
+              <h1 className="title-h1">SẢN PHẨM</h1>
+            </Link>
             <div className="title-content">
               Chúng tôi tự hào cung cấp các sản phẩm thế mạnh
             </div>
           </div>
           <div key="categoryList" className="category-wrapper">
             <Button
-              type={this.state.catActive === "" ? "primary" : null}
+              className={this.state.catActive === "" ? "buttonIsActive" : null}
               onClick={() => this.handleSelectCategory("")}
             >
               Tất cả
@@ -140,40 +155,47 @@ class Content5 extends React.Component {
           footer={null}
         >
           <Row gutter={16}>
-      <Col xs={24} md={10}>
-        <Carousel autoplay effect="fade">
-          {!!image &&
-            image.map(item => (
-              <div key={item.uid}>
-                <img width="100%" src={item.url} alt={item.name}></img>
-              </div>
-            ))}
-        </Carousel>
-      </Col>
-      <Col xs={24} md={14}>
-        <Descriptions title="Chi Tiết Sản Phẩm" bordered
-        column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}>
-          <Descriptions.Item label="Tên Sản Phẩm">{name}</Descriptions.Item>
-          <Descriptions.Item label="Mã Sản Phẩm">
-            {model_number}
-          </Descriptions.Item>
-          <Descriptions.Item label="Loại Sản Phẩm">
-            {!!category && category.title}
-          </Descriptions.Item>
-          <Descriptions.Item label="Mô tả">{description}</Descriptions.Item>
-          <Descriptions.Item label="Thông số kỹ thuật">
-            {documentation}
-          </Descriptions.Item>
-          <Descriptions.Item label="Xuất xứ">{origin}</Descriptions.Item>
-          <Descriptions.Item label="Thời gian giao hàng">
-            {dilivery_time}
-          </Descriptions.Item>
-          <Descriptions.Item label="Bảo hành">
-            {warranty_time}
-          </Descriptions.Item>
-        </Descriptions>
-      </Col>
-    </Row>
+            <Col xs={24} md={10}>
+              <Carousel autoplay effect="fade">
+                {!!image &&
+                  image.map(item => (
+                    <div key={item.uid}>
+                      <img width="100%" src={item.url} alt={item.name}></img>
+                    </div>
+                  ))}
+              </Carousel>
+            </Col>
+            <Col xs={24} md={14}>
+              <Descriptions
+                title="Chi Tiết Sản Phẩm"
+                bordered
+                column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
+              >
+                <Descriptions.Item label="Tên Sản Phẩm">
+                  {name}
+                </Descriptions.Item>
+                <Descriptions.Item label="Mã Sản Phẩm">
+                  {model_number}
+                </Descriptions.Item>
+                <Descriptions.Item label="Loại Sản Phẩm">
+                  {!!category && category.title}
+                </Descriptions.Item>
+                <Descriptions.Item label="Mô tả">
+                  {description}
+                </Descriptions.Item>
+                <Descriptions.Item label="Thông số kỹ thuật">
+                  {documentation}
+                </Descriptions.Item>
+                <Descriptions.Item label="Xuất xứ">{origin}</Descriptions.Item>
+                <Descriptions.Item label="Thời gian giao hàng">
+                  {dilivery_time}
+                </Descriptions.Item>
+                <Descriptions.Item label="Bảo hành">
+                  {warranty_time}
+                </Descriptions.Item>
+              </Descriptions>
+            </Col>
+          </Row>
           {/* <ProductDetail product={product} /> */}
         </Modal>
       </div>
