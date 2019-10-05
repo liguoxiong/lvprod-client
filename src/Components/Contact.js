@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Row, Col, Icon } from "antd";
 import { TweenOneGroup } from "rc-tween-one";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
@@ -10,6 +11,13 @@ import { ReactComponent as Viber } from "./../assets/icons/viber.svg";
 import { ReactComponent as Zalo } from "./../assets/icons/zalo.svg";
 
 class Contact extends React.Component {
+  scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  };
   // getChildrenToRender = data =>
   //   data.map((item, i) => {
   //     return (
@@ -39,7 +47,9 @@ class Contact extends React.Component {
         <div className="home-page contact" id="lienhe">
           <Row>
             <div key="title" className="title-wrapper">
-              <h1>LIÊN HỆ</h1>
+              <Link to="/contact" onClick={this.scrollToTop}>
+                <h1>LIÊN HỆ</h1>
+              </Link>
             </div>
           </Row>
           <Row>

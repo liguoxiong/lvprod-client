@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Row, Col, Button, Modal, Carousel, Descriptions } from "antd";
 import { TweenOneGroup } from "rc-tween-one";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
@@ -60,6 +61,14 @@ class Content5 extends React.Component {
 
   handleCancel = () => {
     this.setState({ visible: false });
+  };
+
+  scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
   };
 
   getChildrenToRender = data =>
@@ -130,10 +139,12 @@ class Content5 extends React.Component {
       documentation
     } = product;
     return (
-      <div {...props} className="home-page-wrapper productList-wrapper">
+      <div className="home-page-wrapper productList-wrapper">
         <div className="home-page productList">
           <div key="title" className="title-wrapper">
-            <h2 className="title-h1">Sản phẩm</h2>
+            <Link to="/products" onClick={this.scrollToTop}>
+              <h2 className="title-h1">Sản phẩm</h2>
+            </Link>
             <h1 className="title-h1">{thisCategory.title}</h1>
             {/* <div className="title-content">
               Chúng tôi tự hào cung cấp các sản phẩm thế mạnh

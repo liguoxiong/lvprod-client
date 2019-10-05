@@ -1,10 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import QueueAnim from "rc-queue-anim";
 import { Row, Col } from "antd";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
 import { getChildrenToRender, isImg } from "./utils";
 
-class Teams1 extends React.PureComponent {
+class Teams1 extends React.Component {
+  scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  };
   // getBlockChildren = (data) =>
   //   data.map((item, i) => {
   //     const { titleWrapper, ...$item } = item;
@@ -27,7 +35,9 @@ class Teams1 extends React.PureComponent {
       <div {...props} className="home-page-wrapper content0-wrapper">
         <div className="home-page content0">
           <div className="title-wrapper">
-            <h1>DỰ ÁN TIÊU BIỂU</h1>
+            <Link to="/constructions" onClick={this.scrollToTop}>
+              <h1>DỰ ÁN TIÊU BIỂU</h1>
+            </Link>
             <div className="title-content">Các công trình đã thi công</div>
           </div>
           <OverPack playScale={0.3} className="">

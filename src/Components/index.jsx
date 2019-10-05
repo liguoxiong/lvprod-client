@@ -1,6 +1,7 @@
 /* eslint no-undef: 0 */
 /* eslint arrow-parens: 0 */
 import React from "react";
+import { Helmet } from "react-helmet";
 import { enquireScreen } from "enquire-js";
 import axios from "axios";
 
@@ -136,6 +137,13 @@ export default class Home extends React.Component {
           this.dom = d;
         }}
       >
+        <Helmet>
+          <title>CÔNG TY TNHH TM - DV - KT VŨ LỘC</title>
+          <meta
+            name="description"
+            content="Cung cấp các loại băng tải - Cung cấp máy móc ngành da giày - Thiết kế thi công showroom gạch trang trí cao cấp"
+          />
+        </Helmet>
         {this.state.show && children}
       </div>
     );

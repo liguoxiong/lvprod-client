@@ -100,7 +100,12 @@ export default class HomeContainer extends React.Component {
         <Affix offsetTop={200}>
           <Row className="icon-wrapper">
             <Row>
-              <a className="icons" href={Info.facebook}>
+              <a
+                className="icons"
+                href={Info.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Facebook className="icon-box-shadow" />
               </a>
             </Row>
@@ -112,6 +117,8 @@ export default class HomeContainer extends React.Component {
                     ? Info.messenger.replace("www.facebook.com", "m.me")
                     : ""
                 }
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Messenger className="icon-box-shadow" />
               </a>
@@ -120,6 +127,8 @@ export default class HomeContainer extends React.Component {
               <a
                 className="icons"
                 href={Info.zalo ? `http://zalo.me/${Info.zalo}` : ""}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Zalo className="icon-box-shadow" />
               </a>
