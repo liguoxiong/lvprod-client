@@ -57,7 +57,7 @@ class Content5 extends React.Component {
 
   showModal = id => {
     axios.get(`/api/products/${id}`).then(res => {
-      console.log("product", res.data.data);
+      // console.log("product", res.data.data);
       this.setState({
         product: res.data.data,
         visible: true

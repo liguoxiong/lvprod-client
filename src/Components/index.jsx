@@ -56,19 +56,19 @@ export default class Home extends React.Component {
       ])
       .then(
         axios.spread((banners, services, categories, constructions, info) => {
-          console.log("banner: ", banners.data.data);
+          // console.log("banner: ", banners.data.data);
           this.setState({
             Banner10DataSource: banners.data.data
           });
-          console.log("services: ", services.data.data);
+          // console.log("services: ", services.data.data);
           this.setState({
             Services: services.data.data
           });
-          console.log("categories: ", categories.data.data);
+          // console.log("categories: ", categories.data.data);
           this.setState({
             AllCategory: categories.data.data
           });
-          console.log("constructions: ", constructions.data.data);
+          // console.log("constructions: ", constructions.data.data);
           this.setState({
             constructions: constructions.data.data
           });

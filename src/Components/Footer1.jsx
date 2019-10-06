@@ -74,9 +74,9 @@ class Footer extends React.Component {
 
   render() {
     const { info, category, services } = this.state;
-    console.log(info);
-    console.log(category);
-    console.log(this.categoryMap(category));
+    // console.log(info);
+    // console.log(category);
+    // console.log(this.categoryMap(category));
     const data = {
       children: [
         {

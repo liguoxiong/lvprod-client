@@ -37,7 +37,7 @@ class Header extends React.Component {
   };
 
   render() {
-    console.log(this.state.subItem);
+    // console.log(this.state.subItem);
     const menu = {
       logo: this.state.logo,
       // logo: "https://os.alipayobjects.com/rmsportal/mlcYmsRilwraoAe.svg",
